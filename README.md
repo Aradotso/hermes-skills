@@ -27,6 +27,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-desktop-companion](skills/hermes-desktop-companion/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-desktop-companion) | [fathah/hermes-desktop](https://github.com/fathah/hermes-desktop) | 2026-05-16 |
 | [hermes-agent-framework](skills/hermes-agent-framework/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-framework) | [alchaincyf/hermes-agent-orange-book](https://github.com/alchaincyf/hermes-agent-orange-book) | 2026-05-16 |
 | [hermes-workspace-ai-agent-ui](skills/hermes-workspace-ai-agent-ui/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-workspace-ai-agent-ui) | [outsourc-e/hermes-workspace](https://github.com/outsourc-e/hermes-workspace) | 2026-05-16 |
+| [openclaw-rl-training](skills/openclaw-rl-training/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-rl-training) | [Gen-Verse/OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
