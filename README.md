@@ -21,6 +21,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | Skill | skills.sh | Source | Date |
 |-------|-----------|--------|------|
 | [awesome-openclaw-skills](skills/awesome-openclaw-skills/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-skills) | [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) | 2026-05-16 |
+| [awesome-openclaw-usecases-discovery](skills/awesome-openclaw-usecases-discovery/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-usecases-discovery) | [hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
