@@ -35,6 +35,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [awesome-openclaw-usecases-zh](skills/awesome-openclaw-usecases-zh/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-usecases-zh) | [AlexAnys/awesome-openclaw-usecases-zh](https://github.com/AlexAnys/awesome-openclaw-usecases-zh) | 2026-05-16 |
 | [oh-my-hermes-workflow](skills/oh-my-hermes-workflow/) | [install](https://skills.sh/aradotso/hermes-skills/oh-my-hermes-workflow) | [Salomondiei08/oh-my-hermes](https://github.com/Salomondiei08/oh-my-hermes) | 2026-05-16 |
 | [hermes-agent-self-evolution](skills/hermes-agent-self-evolution/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-self-evolution) | [NousResearch/hermes-agent-self-evolution](https://github.com/NousResearch/hermes-agent-self-evolution) | 2026-05-16 |
+| [awesome-openclaw-tutorial](skills/awesome-openclaw-tutorial/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-tutorial) | [xianyu110/awesome-openclaw-tutorial](https://github.com/xianyu110/awesome-openclaw-tutorial) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
