@@ -24,6 +24,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [awesome-openclaw-usecases-discovery](skills/awesome-openclaw-usecases-discovery/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-usecases-discovery) | [hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) | 2026-05-16 |
 | [hermes-webui-agent](skills/hermes-webui-agent/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-webui-agent) | [nesquena/hermes-webui](https://github.com/nesquena/hermes-webui) | 2026-05-16 |
 | [hermes-web-ui-dashboard](skills/hermes-web-ui-dashboard/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-web-ui-dashboard) | [EKKOLearnAI/hermes-web-ui](https://github.com/EKKOLearnAI/hermes-web-ui) | 2026-05-16 |
+| [hermes-desktop-companion](skills/hermes-desktop-companion/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-desktop-companion) | [fathah/hermes-desktop](https://github.com/fathah/hermes-desktop) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
