@@ -30,6 +30,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-rl-training](skills/openclaw-rl-training/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-rl-training) | [Gen-Verse/OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL) | 2026-05-16 |
 | [openclaw-control-center](skills/openclaw-control-center/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-control-center) | [TianyiDataScience/openclaw-control-center](https://github.com/TianyiDataScience/openclaw-control-center) | 2026-05-16 |
 | [hermes-desktop-os1-native-macos-client](skills/hermes-desktop-os1-native-macos-client/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-desktop-os1-native-macos-client) | [nickvasilescu/hermes-desktop-os1](https://github.com/nickvasilescu/hermes-desktop-os1) | 2026-05-16 |
+| [openclaw-zero-token](skills/openclaw-zero-token/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-zero-token) | [linuxhsj/openclaw-zero-token](https://github.com/linuxhsj/openclaw-zero-token) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
