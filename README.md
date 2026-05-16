@@ -32,6 +32,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-desktop-os1-native-macos-client](skills/hermes-desktop-os1-native-macos-client/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-desktop-os1-native-macos-client) | [nickvasilescu/hermes-desktop-os1](https://github.com/nickvasilescu/hermes-desktop-os1) | 2026-05-16 |
 | [openclaw-zero-token](skills/openclaw-zero-token/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-zero-token) | [linuxhsj/openclaw-zero-token](https://github.com/linuxhsj/openclaw-zero-token) | 2026-05-16 |
 | [awesome-hermes-agent-ecosystem](skills/awesome-hermes-agent-ecosystem/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-hermes-agent-ecosystem) | [0xNyk/awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent) | 2026-05-16 |
+| [awesome-openclaw-usecases-zh](skills/awesome-openclaw-usecases-zh/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-usecases-zh) | [AlexAnys/awesome-openclaw-usecases-zh](https://github.com/AlexAnys/awesome-openclaw-usecases-zh) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
