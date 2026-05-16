@@ -20,6 +20,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 
 | Skill | skills.sh | Source | Date |
 |-------|-----------|--------|------|
+| [awesome-openclaw-skills](skills/awesome-openclaw-skills/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-skills) | [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) | 2026-05-16 |
 <!-- SKILL_INDEX -->
 
 ---
