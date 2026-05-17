@@ -1,30 +1,32 @@
 ---
 name: openclaw-installer-deployment
-description: Deploy and configure OpenClaw AI assistant with multi-platform support, AI models, and messaging channels
+description: Deploy and configure OpenClaw AI assistant with multi-model support and messaging channels
 triggers:
-  - install openclaw ai assistant
-  - deploy openclaw with telegram bot
-  - configure openclaw discord integration
-  - set up openclaw with claude or gpt
+  - how do I install openclaw
+  - set up openclaw with claude
+  - configure telegram bot for openclaw
+  - deploy openclaw ai assistant
+  - openclaw discord bot setup
   - manage openclaw gateway service
-  - add messaging channels to openclaw
-  - troubleshoot openclaw deployment
-  - configure openclaw feishu whatsapp
+  - configure feishu with openclaw
+  - troubleshoot openclaw installation
 ---
 
 # OpenClaw Installer & Deployment
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-OpenClaw is a private AI assistant with persistent memory, multi-platform messaging support, and proactive capabilities. This installer provides one-click deployment for macOS and Linux with support for Claude, GPT, Gemini, and other AI models.
+## Overview
 
-## What OpenClaw Does
+OpenClaw is a personal AI assistant framework with persistent memory, multi-platform messaging support, and extensible skills system. OpenClawInstaller provides one-click deployment scripts for macOS and Linux with interactive configuration menus for AI models (Claude, GPT, Gemini, etc.) and messaging channels (Telegram, Discord, WhatsApp, Feishu, WeChat, iMessage).
 
-- **Persistent Memory**: Cross-conversation, cross-platform long-term memory
-- **Multi-Channel**: Telegram, Discord, WhatsApp, Slack, WeChat, iMessage, Feishu
-- **Proactive Push**: Scheduled reminders, morning reports, alerts
-- **Skill System**: Custom capabilities via Markdown files
-- **Remote Control**: Execute system commands, file operations, web browsing
+**Key capabilities:**
+- Multi-model AI support (Anthropic, OpenAI, Google, Groq, Ollama, etc.)
+- Custom API proxy/gateway support (OneAPI, NewAPI)
+- Multi-channel messaging (Telegram, Discord, WhatsApp, Feishu, Slack, WeChat, iMessage)
+- Persistent memory across conversations
+- Background daemon service management
+- Interactive configuration wizard
 
 ## Installation
 
@@ -34,36 +36,39 @@ OpenClaw is a private AI assistant with persistent memory, multi-platform messag
 curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawInstaller/main/install.sh | bash
 ```
 
-The installer automatically:
-1. Detects system and installs dependencies (Node.js v22+)
-2. Installs OpenClaw globally via npm
-3. Guides through core configuration (AI model, identity)
-4. Tests API connections
-5. Starts OpenClaw service
+This automatically:
+1. Detects system and installs Node.js v22+ if needed
+2. Installs OpenClaw via npm
+3. Runs interactive configuration wizard for AI model and identity
+4. Tests API connection
+5. Offers to start the gateway service
 6. Optionally opens configuration menu for channels
 
-### Manual Installation
+### Manual Install
 
 ```bash
-# Clone repository
 git clone https://github.com/miaoxworld/OpenClawInstaller.git
 cd OpenClawInstaller
-
-# Add execution permissions
 chmod +x install.sh config-menu.sh
-
-# Run installer
 ./install.sh
+```
 
-# Or install OpenClaw directly
+### Manual OpenClaw Package Install
+
+```bash
 npm install -g openclaw
 ```
 
-### Desktop GUI Alternative
+## Directory Structure
 
-For graphical interface, use OpenClaw Manager (Tauri + React + Rust):
-- Download: https://github.com/miaoxworld/openclaw-manager
-- Features: Real-time monitoring, visual config, cross-platform
+```
+~/.openclaw/
+├── openclaw.json        # Core configuration (auto-managed)
+├── env                  # Environment variables (API keys)
+├── config-menu.sh       # Configuration wizard script
+├── backups/             # Configuration backups
+└── logs/                # Service logs
+```
 
 ## Service Management
 
@@ -88,11 +93,11 @@ source ~/.openclaw/env && openclaw gateway
 # View logs
 openclaw logs
 
-# Real-time logs
+# Follow logs in real-time
 openclaw logs --follow
 ```
 
-### Configuration Management
+### Configuration Commands
 
 ```bash
 # Open configuration file
@@ -101,35 +106,44 @@ openclaw config
 # Run onboarding wizard
 openclaw onboard
 
-# Diagnose issues
+# Diagnose configuration issues
 openclaw doctor
 
 # Health check
 openclaw health
 
-# Run interactive config menu
+# Run interactive menu (installer script)
 bash ~/.openclaw/config-menu.sh
-
-# Or download and run
-curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawInstaller/main/config-menu.sh | bash
 ```
 
 ## AI Model Configuration
 
-### Anthropic Claude (with Custom API Support)
+### Environment Variables Setup
+
+Edit `~/.openclaw/env`:
 
 ```bash
-# Environment variables in ~/.openclaw/env
+# Anthropic Claude
 export ANTHROPIC_API_KEY=sk-ant-xxxxx
-export ANTHROPIC_BASE_URL=https://your-api-proxy.com  # Optional
+export ANTHROPIC_BASE_URL=https://your-proxy.com  # Optional custom endpoint
 
-# Set model via CLI
-openclaw models set claude-sonnet-4-5-20250929
+# OpenAI GPT
+export OPENAI_API_KEY=sk-xxxxx
+export OPENAI_BASE_URL=https://your-proxy.com/v1  # Optional, must support v1/responses
 
-# Or use config menu: [2] AI 模型配置 → [1] Anthropic Claude
+# Google Gemini
+export GOOGLE_API_KEY=your-key
+
+# Groq
+export GROQ_API_KEY=your-key
+
+# OpenRouter
+export OPENROUTER_API_KEY=your-key
 ```
 
-Custom provider in `~/.openclaw/openclaw.json`:
+### Custom Provider Configuration
+
+For custom API proxies (OneAPI, NewAPI), the installer creates provider configs in `~/.openclaw/openclaw.json`:
 
 ```json
 {
@@ -141,7 +155,7 @@ Custom provider in `~/.openclaw/openclaw.json`:
         "models": [
           {
             "id": "claude-sonnet-4-5-20250929",
-            "name": "claude-sonnet-4-5-20250929",
+            "name": "claude-sonnet-4-5",
             "api": "anthropic-messages",
             "input": ["text"],
             "contextWindow": 200000,
@@ -154,148 +168,117 @@ Custom provider in `~/.openclaw/openclaw.json`:
 }
 ```
 
-### OpenAI GPT (Requires v1/responses Support)
+### Setting Active Model
 
 ```bash
-# Environment variables
-export OPENAI_API_KEY=sk-xxxxx
-export OPENAI_BASE_URL=https://your-api-proxy.com/v1  # Must support v1/responses
+# Via CLI
+openclaw models set anthropic-custom/claude-sonnet-4-5-20250929
 
-# Set model
-openclaw models set gpt-4o
+# Or use config menu
+bash ~/.openclaw/config-menu.sh
+# Select [2] AI Model Configuration
 ```
 
-**Important**: Custom OpenAI endpoints MUST support the Responses API (`v1/responses`), not just Chat Completions (`v1/chat/completions`). Verify proxy compatibility before use.
+### Supported Models
 
-### Other Supported Models
-
-```bash
-# Google Gemini
-export GOOGLE_API_KEY=AIzaSyXXXXX
-openclaw models set gemini-2.0-flash
-
-# OpenRouter (multi-model gateway)
-export OPENROUTER_API_KEY=sk-or-xxxxx
-openclaw models set openrouter/anthropic/claude-sonnet-4
-
-# Groq (fast inference)
-export GROQ_API_KEY=gsk_xxxxx
-openclaw models set groq/llama-3.3-70b-versatile
-
-# Mistral AI
-export MISTRAL_API_KEY=xxxxx
-openclaw models set mistral-large-latest
-
-# Ollama (local)
-export OLLAMA_BASE_URL=http://localhost:11434
-openclaw models set ollama/llama3
-```
+- **Anthropic Claude**: claude-sonnet-4-5, claude-opus-4-5, claude-haiku-4-5
+- **OpenAI GPT**: gpt-4o, gpt-4o-mini, gpt-4-turbo (requires v1/responses support)
+- **Google Gemini**: gemini-2.0-flash, gemini-1.5-pro, gemini-1.5-flash
+- **OpenRouter**: Multi-model gateway with single API key
+- **Groq**: llama-3.3-70b-versatile, llama-3.1-8b-instant
+- **Mistral AI**: mistral-large-latest, mistral-small-latest
+- **Ollama**: Local models (llama3, mistral, etc.)
 
 ## Messaging Channel Configuration
 
 ### Telegram Bot
 
-```bash
-# 1. Create bot via @BotFather
-# 2. Get User ID from @userinfobot
-# 3. Configure
-
-openclaw config set telegram.token YOUR_BOT_TOKEN
-openclaw config set telegram.userId YOUR_USER_ID
-
-# Restart gateway
-openclaw gateway restart
-```
-
-### Discord Bot
-
-```bash
-# 1. Create application at https://discord.com/developers/applications
-# 2. Enable "Message Content Intent" in Bot settings
-# 3. Invite bot with permissions: View Channels, Send Messages, Read Message History
-# 4. Get Channel ID (right-click channel with Developer Mode enabled)
-
-openclaw config set discord.token YOUR_BOT_TOKEN
-openclaw config set discord.channelId YOUR_CHANNEL_ID
-
-openclaw gateway restart
-```
-
-### Feishu (Lark) Bot
-
-```bash
-# 1. Create app at https://open.feishu.cn/
-# 2. Add "Bot" capability
-# 3. Grant permissions: im:message, im:message:send_as_bot, im:chat:readonly
-# 4. Publish app version
-# 5. Enable long connection in "Event Subscription" (add im.message.receive_v1)
-
-openclaw config set feishu.appId YOUR_APP_ID
-openclaw config set feishu.appSecret YOUR_APP_SECRET
-
-# Start gateway BEFORE saving long connection settings
-openclaw gateway start
-
-# No webhook URL needed - uses WebSocket long connection
-```
-
-Environment variables in `~/.openclaw/env`:
-
-```bash
-export FEISHU_APP_ID=cli_xxxxx
-export FEISHU_APP_SECRET=xxxxx
-```
-
-### WhatsApp (QR Code Login)
-
-```bash
-# 1. Enable in config menu: [3] 消息渠道配置 → [3] WhatsApp
-# 2. Scan QR code shown in terminal
-# 3. Restart gateway
-
-openclaw gateway restart
-
-# Test by messaging yourself - bot will reply
-```
-
-**Note**: WhatsApp Web can only be active on one device. Previous sessions will be logged out.
-
-### Configuration File Structure
-
-`~/.openclaw/openclaw.json` example:
+1. Create bot via `@BotFather` in Telegram:
+   ```
+   /newbot
+   ```
+2. Get your User ID from `@userinfobot`
+3. Configure in `~/.openclaw/openclaw.json`:
 
 ```json
 {
-  "identity": {
-    "name": "Alex",
-    "role": "developer",
-    "timezone": "Asia/Shanghai"
-  },
-  "models": {
-    "default": "claude-sonnet-4-5-20250929",
-    "providers": {
-      "anthropic": {
-        "apiKey": "${ANTHROPIC_API_KEY}",
-        "baseUrl": "${ANTHROPIC_BASE_URL}"
-      }
-    }
-  },
   "channels": {
     "telegram": {
       "enabled": true,
       "token": "${TELEGRAM_BOT_TOKEN}",
-      "userId": "${TELEGRAM_USER_ID}"
-    },
+      "allowedUserIds": ["123456789"]
+    }
+  }
+}
+```
+
+Set environment variable in `~/.openclaw/env`:
+```bash
+export TELEGRAM_BOT_TOKEN=your-bot-token
+```
+
+### Discord Bot
+
+1. Create application at [Discord Developer Portal](https://discord.com/developers/applications)
+2. Create bot, copy token, **enable Message Content Intent**
+3. Invite bot with OAuth2 URL Generator (scopes: `bot`, permissions: View Channels, Send Messages, Read Message History)
+4. Get Channel ID (enable Developer Mode in Discord settings, right-click channel)
+
+```json
+{
+  "channels": {
     "discord": {
       "enabled": true,
       "token": "${DISCORD_BOT_TOKEN}",
-      "channelId": "${DISCORD_CHANNEL_ID}"
-    },
+      "channelIds": ["1234567890123456789"]
+    }
+  }
+}
+```
+
+```bash
+export DISCORD_BOT_TOKEN=your-bot-token
+```
+
+### Feishu (Lark) Bot
+
+**No public server required** — uses WebSocket long-connection mode.
+
+1. Create app at [Feishu Open Platform](https://open.feishu.cn/)
+2. Add "Bot" capability
+3. Add permissions: `im:message`, `im:message:send_as_bot`, `im:chat:readonly`
+4. Publish app
+5. Configure event subscription with **long-connection mode** (not webhook):
+   - Add event: `im.message.receive_v1`
+   - No webhook URL needed
+6. Add bot to group chat
+
+```json
+{
+  "channels": {
     "feishu": {
       "enabled": true,
       "appId": "${FEISHU_APP_ID}",
       "appSecret": "${FEISHU_APP_SECRET}"
-    },
+    }
+  }
+}
+```
+
+```bash
+export FEISHU_APP_ID=cli_xxxxx
+export FEISHU_APP_SECRET=your-secret
+```
+
+### WhatsApp
+
+**No Business API required** — uses QR code login.
+
+1. Enable in configuration menu or edit config:
+
+```json
+{
+  "channels": {
     "whatsapp": {
       "enabled": true
     }
@@ -303,79 +286,224 @@ openclaw gateway restart
 }
 ```
 
+2. Start gateway — QR code will appear in terminal
+3. Scan with WhatsApp mobile app
+4. Send message to yourself to test
+
 ## Common Patterns
 
-### Full Deployment Script
+### Initial Setup Workflow
 
 ```bash
-#!/bin/bash
-# Deploy OpenClaw with Claude and Telegram
-
-# 1. Install OpenClaw
+# 1. Install
 curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawInstaller/main/install.sh | bash
 
-# 2. Configure environment
-cat > ~/.openclaw/env << EOF
-export ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-export TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-export TELEGRAM_USER_ID=${TELEGRAM_USER_ID}
-EOF
+# 2. Configure AI model (follow prompts)
+# Select provider, enter API key, choose model
 
-# 3. Set model
-source ~/.openclaw/env
-openclaw models set claude-sonnet-4-5-20250929
-
-# 4. Configure Telegram
-openclaw config set telegram.token ${TELEGRAM_BOT_TOKEN}
-openclaw config set telegram.userId ${TELEGRAM_USER_ID}
-
-# 5. Start service
+# 3. Start service
 openclaw gateway start
 
-# 6. Verify
+# 4. Configure channels (optional)
+bash ~/.openclaw/config-menu.sh
+# Select [3] Message Channel Configuration
+
+# 5. Verify
 openclaw gateway status
-openclaw health
+openclaw logs --follow
 ```
 
-### Multi-Channel Setup
+### Updating Configuration
 
 ```bash
-# Enable multiple channels simultaneously
-openclaw config set telegram.enabled true
-openclaw config set discord.enabled true
-openclaw config set feishu.enabled true
-openclaw config set whatsapp.enabled true
+# Stop service
+openclaw gateway stop
 
-# Restart to apply
-openclaw gateway restart
+# Edit environment variables
+nano ~/.openclaw/env
 
-# Monitor logs for all channels
-openclaw logs --follow
+# Or use interactive menu
+bash ~/.openclaw/config-menu.sh
+
+# Restart
+openclaw gateway start
 ```
 
 ### Switching AI Models
 
 ```bash
-# List available models
-openclaw models list
+# Quick switch via menu
+bash ~/.openclaw/config-menu.sh
+# [2] AI Model Configuration → [1] Select Provider
 
-# Switch to GPT
-export OPENAI_API_KEY=sk-xxxxx
-export OPENAI_BASE_URL=https://your-proxy.com/v1
-openclaw models set gpt-4o
+# Or manual
+openclaw models set anthropic/claude-sonnet-4-5-20250929
 
-# Switch to Gemini
-export GOOGLE_API_KEY=AIzaSyXXXX
-openclaw models set gemini-2.0-flash
-
-# Switch back to Claude
-openclaw models set claude-sonnet-4-5-20250929
-
-# Restart required
+# Restart gateway
 openclaw gateway restart
 ```
 
-### Data Management
+### Adding Multiple Channels
+
+```bash
+# Run config menu
+bash ~/.openclaw/config-menu.sh
+
+# Configure each channel:
+# [3] Message Channel Configuration
+# [1] Telegram
+# [2] Discord
+# [3] WhatsApp
+# [4] Feishu
+# etc.
+
+# Restart to apply
+openclaw gateway restart
+```
+
+### Testing API Connection
+
+```bash
+# Via config menu
+bash ~/.openclaw/config-menu.sh
+# [4] Quick Test → [1] Test API Connection
+
+# Or manual health check
+openclaw health
+openclaw doctor
+```
+
+## Troubleshooting
+
+### Service Won't Start
+
+```bash
+# Check status and logs
+openclaw gateway status
+openclaw logs
+
+# Common issues:
+# 1. Port conflict (default 3000)
+ps aux | grep openclaw
+kill <pid>
+
+# 2. Missing API key
+cat ~/.openclaw/env
+# Ensure keys are exported
+
+# 3. Invalid configuration
+openclaw doctor
+openclaw config
+```
+
+### API Connection Fails
+
+```bash
+# Test connection manually
+source ~/.openclaw/env
+curl -H "x-api-key: $ANTHROPIC_API_KEY" \
+     "${ANTHROPIC_BASE_URL:-https://api.anthropic.com}/v1/messages"
+
+# Check environment variables
+echo $ANTHROPIC_API_KEY
+echo $ANTHROPIC_BASE_URL
+
+# Verify custom endpoint supports required API
+# For OpenAI: must support v1/responses, not just v1/chat/completions
+```
+
+### Bot Not Responding (Telegram/Discord)
+
+```bash
+# 1. Check service is running
+openclaw gateway status
+
+# 2. Verify bot token in logs
+openclaw logs | grep -i telegram
+openclaw logs | grep -i discord
+
+# 3. Check configuration
+cat ~/.openclaw/openclaw.json | grep -A 5 telegram
+
+# 4. Telegram: verify user ID is in allowedUserIds
+# 5. Discord: verify Message Content Intent is enabled
+```
+
+### Feishu Bot Issues
+
+```bash
+# 1. Ensure service is running BEFORE configuring event subscription
+openclaw gateway status
+
+# 2. Check logs for WebSocket connection
+openclaw logs --follow | grep -i feishu
+
+# 3. Verify event subscription uses "long-connection" mode, not webhook
+
+# 4. Check permissions in Feishu admin console
+```
+
+### WhatsApp QR Code Not Appearing
+
+```bash
+# 1. Stop service
+openclaw gateway stop
+
+# 2. Clear WhatsApp session
+rm -rf ~/.openclaw/.wwebjs_auth
+
+# 3. Start in foreground to see QR
+source ~/.openclaw/env && openclaw gateway
+
+# 4. Wait ~30 seconds for QR generation
+```
+
+### Configuration Reset
+
+```bash
+# Backup current config
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.backup
+cp ~/.openclaw/env ~/.openclaw/env.backup
+
+# Re-run onboarding
+openclaw onboard
+
+# Or use installer
+curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawInstaller/main/install.sh | bash
+```
+
+### Permission Errors (macOS)
+
+```bash
+# If install.sh blocked by Gatekeeper
+chmod +x install.sh
+xattr -d com.apple.quarantine install.sh
+
+# Or manually install OpenClaw first
+npm install -g openclaw
+# Then run installer for configuration only
+./install.sh
+```
+
+## Advanced Usage
+
+### Custom Skills
+
+Create Markdown skill files in `~/.openclaw/skills/`:
+
+```markdown
+# My Custom Skill
+
+## Trigger
+When user asks about {topic}
+
+## Action
+1. Analyze request
+2. Execute logic
+3. Return formatted response
+```
+
+### Memory Management
 
 ```bash
 # Export conversation history
@@ -384,172 +512,36 @@ openclaw export --format json > conversations.json
 # Clear memory
 openclaw memory clear
 
-# Backup configuration
+# Backup data
 openclaw backup
-
-# Restore from backup
-openclaw restore ~/.openclaw/backups/backup-2026-05-17.tar.gz
 ```
 
-## Troubleshooting
-
-### Service Won't Start
+### Environment Variable Reference
 
 ```bash
-# Check diagnostics
-openclaw doctor
-
-# View error logs
-openclaw logs | tail -n 50
-
-# Check port conflicts
-lsof -i :3000  # Default gateway port
-
-# Verify environment variables
-source ~/.openclaw/env
-echo $ANTHROPIC_API_KEY
-echo $TELEGRAM_BOT_TOKEN
-
-# Reinstall if needed
-npm uninstall -g openclaw
-npm install -g openclaw
+# ~/.openclaw/env
+export ANTHROPIC_API_KEY=sk-ant-xxxxx
+export ANTHROPIC_BASE_URL=https://custom-proxy.com
+export OPENAI_API_KEY=sk-xxxxx
+export OPENAI_BASE_URL=https://custom-proxy.com/v1
+export GOOGLE_API_KEY=xxxxx
+export GROQ_API_KEY=xxxxx
+export OPENROUTER_API_KEY=xxxxx
+export TELEGRAM_BOT_TOKEN=xxxxx
+export DISCORD_BOT_TOKEN=xxxxx
+export FEISHU_APP_ID=cli_xxxxx
+export FEISHU_APP_SECRET=xxxxx
 ```
 
-### API Connection Issues
+### Running Multiple Instances
 
 ```bash
-# Test API connectivity
-curl -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-     -H "anthropic-version: 2023-06-01" \
-     https://api.anthropic.com/v1/messages
-
-# For custom base URL
-curl -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-     -H "anthropic-version: 2023-06-01" \
-     ${ANTHROPIC_BASE_URL}/v1/messages
-
-# Check health endpoint
-openclaw health
-```
-
-### OpenAI v1/responses Error
-
-If using custom OpenAI endpoint and getting errors:
-
-```bash
-# Verify proxy supports v1/responses
-curl ${OPENAI_BASE_URL}/v1/responses \
-  -H "Authorization: Bearer ${OPENAI_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "gpt-4o",
-    "messages": [{"role": "user", "content": "test"}]
-  }'
-
-# If not supported, switch to Claude or Gemini
-openclaw models set claude-sonnet-4-5-20250929
-```
-
-### Telegram Bot Not Responding
-
-```bash
-# Verify bot token
-curl https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe
-
-# Check webhook conflicts (should be empty)
-curl https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getWebhookInfo
-
-# Delete webhook if set
-curl https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/deleteWebhook
-
-# Restart gateway
-openclaw gateway restart
-
-# Test by sending message to bot
-```
-
-### Discord Bot Missing Messages
-
-```bash
-# Verify Message Content Intent is enabled
-# 1. Go to https://discord.com/developers/applications
-# 2. Select your app → Bot
-# 3. Ensure "Message Content Intent" is ON
-
-# Check bot permissions in channel
-# Required: View Channels, Send Messages, Read Message History
-
-# Verify channelId
-echo $DISCORD_CHANNEL_ID
-
-# Restart and monitor logs
-openclaw gateway restart
-openclaw logs --follow | grep discord
-```
-
-### Feishu Long Connection Failed
-
-```bash
-# Ensure gateway is running BEFORE configuring event subscription
-openclaw gateway status
-
-# If stopped, start it
+# Use different ports and config directories
+OPENCLAW_CONFIG_DIR=~/.openclaw-dev \
+OPENCLAW_PORT=3001 \
 openclaw gateway start
 
-# Then configure long connection in Feishu console
-# Event Subscription → Use long connection → Add im.message.receive_v1
-
-# Check logs for connection status
-openclaw logs | grep feishu
+# Separate environment files
+source ~/.openclaw-dev/env
+openclaw gateway
 ```
-
-### WhatsApp QR Code Won't Scan
-
-```bash
-# Ensure terminal window is large enough to display QR
-# Use iTerm2/Windows Terminal with good Unicode support
-
-# If QR corrupted, restart gateway
-openclaw gateway restart
-
-# Check session exists
-ls ~/.openclaw/whatsapp-session/
-
-# Clear session and re-authenticate
-rm -rf ~/.openclaw/whatsapp-session/
-openclaw gateway restart
-```
-
-### Configuration Menu Issues
-
-```bash
-# Ensure scripts are executable
-chmod +x ~/.openclaw/config-menu.sh
-
-# Run with bash explicitly
-bash ~/.openclaw/config-menu.sh
-
-# Download latest version
-curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawInstaller/main/config-menu.sh -o ~/.openclaw/config-menu.sh
-chmod +x ~/.openclaw/config-menu.sh
-bash ~/.openclaw/config-menu.sh
-```
-
-## Directory Structure
-
-```
-~/.openclaw/
-├── openclaw.json        # Core configuration
-├── env                  # Environment variables (API keys)
-├── config-menu.sh       # Interactive configuration script
-├── backups/             # Configuration backups
-├── logs/                # Service logs
-└── whatsapp-session/    # WhatsApp session data
-```
-
-## System Requirements
-
-- **OS**: macOS 12+ / Ubuntu 20.04+ / Debian 11+ / CentOS 8+
-- **Node.js**: v22 or higher
-- **RAM**: Minimum 2GB, recommended 4GB+
-- **Disk**: Minimum 1GB free space
