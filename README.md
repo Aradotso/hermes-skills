@@ -42,6 +42,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-mission-control](skills/openclaw-mission-control/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-mission-control) | [abhi1693/openclaw-mission-control](https://github.com/abhi1693/openclaw-mission-control) | 2026-05-17 |
 | [awesome-openclaw-skills-zh](skills/awesome-openclaw-skills-zh/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-skills-zh) | [clawdbot-ai/awesome-openclaw-skills-zh](https://github.com/clawdbot-ai/awesome-openclaw-skills-zh) | 2026-05-17 |
 | [openclaw-security-practice-guide](skills/openclaw-security-practice-guide/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-security-practice-guide) | [slowmist/openclaw-security-practice-guide](https://github.com/slowmist/openclaw-security-practice-guide) | 2026-05-17 |
+| [openclaw-chinese-ai-assistant](skills/openclaw-chinese-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-ai-assistant) | [1186258278/OpenClawChineseTranslation](https://github.com/1186258278/OpenClawChineseTranslation) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
