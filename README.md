@@ -43,6 +43,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [awesome-openclaw-skills-zh](skills/awesome-openclaw-skills-zh/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-skills-zh) | [clawdbot-ai/awesome-openclaw-skills-zh](https://github.com/clawdbot-ai/awesome-openclaw-skills-zh) | 2026-05-17 |
 | [openclaw-security-practice-guide](skills/openclaw-security-practice-guide/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-security-practice-guide) | [slowmist/openclaw-security-practice-guide](https://github.com/slowmist/openclaw-security-practice-guide) | 2026-05-17 |
 | [openclaw-chinese-ai-assistant](skills/openclaw-chinese-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-ai-assistant) | [1186258278/OpenClawChineseTranslation](https://github.com/1186258278/OpenClawChineseTranslation) | 2026-05-17 |
+| [openclaw-china-integration](skills/openclaw-china-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-china-integration) | [BytePioneer-AI/openclaw-china](https://github.com/BytePioneer-AI/openclaw-china) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
