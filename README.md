@@ -56,6 +56,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-atlas-ecosystem-map](skills/hermes-atlas-ecosystem-map/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-atlas-ecosystem-map) | [ksimback/hermes-ecosystem](https://github.com/ksimback/hermes-ecosystem) | 2026-05-17 |
 | [openclaw-bot-review-dashboard](skills/openclaw-bot-review-dashboard/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-bot-review-dashboard) | [xmanrui/OpenClaw-bot-review](https://github.com/xmanrui/OpenClaw-bot-review) | 2026-05-17 |
 | [hermes-paperclip-adapter](skills/hermes-paperclip-adapter/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-paperclip-adapter) | [NousResearch/hermes-paperclip-adapter](https://github.com/NousResearch/hermes-paperclip-adapter) | 2026-05-17 |
+| [dingtalk-openclaw-connector](skills/dingtalk-openclaw-connector/) | [install](https://skills.sh/aradotso/hermes-skills/dingtalk-openclaw-connector) | [DingTalk-Real-AI/dingtalk-openclaw-connector](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
