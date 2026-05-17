@@ -45,6 +45,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-chinese-ai-assistant](skills/openclaw-chinese-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-ai-assistant) | [1186258278/OpenClawChineseTranslation](https://github.com/1186258278/OpenClawChineseTranslation) | 2026-05-17 |
 | [openclaw-china-integration](skills/openclaw-china-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-china-integration) | [BytePioneer-AI/openclaw-china](https://github.com/BytePioneer-AI/openclaw-china) | 2026-05-17 |
 | [openclaw-medical-skills](skills/openclaw-medical-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-medical-skills) | [FreedomIntelligence/OpenClaw-Medical-Skills](https://github.com/FreedomIntelligence/OpenClaw-Medical-Skills) | 2026-05-17 |
+| [openclaw-china-docker](skills/openclaw-china-docker/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-china-docker) | [justlovemaki/openclaw-china-docker](https://github.com/justlovemaki/openclaw-china-docker) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
