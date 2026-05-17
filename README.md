@@ -53,6 +53,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw101-resource-platform](skills/openclaw101-resource-platform/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw101-resource-platform) | [mengjian-github/openclaw101](https://github.com/mengjian-github/openclaw101) | 2026-05-17 |
 | [openclaw-awd-arena](skills/openclaw-awd-arena/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-awd-arena) | [LYiHub/OpenClaw-AWD-Arena](https://github.com/LYiHub/OpenClaw-AWD-Arena) | 2026-05-17 |
 | [openclaw-master-skills](skills/openclaw-master-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-master-skills) | [LeoYeAI/openclaw-master-skills](https://github.com/LeoYeAI/openclaw-master-skills) | 2026-05-17 |
+| [hermes-atlas-ecosystem-map](skills/hermes-atlas-ecosystem-map/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-atlas-ecosystem-map) | [ksimback/hermes-ecosystem](https://github.com/ksimback/hermes-ecosystem) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
