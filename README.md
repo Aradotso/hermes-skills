@@ -38,6 +38,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [awesome-openclaw-tutorial](skills/awesome-openclaw-tutorial/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-tutorial) | [xianyu110/awesome-openclaw-tutorial](https://github.com/xianyu110/awesome-openclaw-tutorial) | 2026-05-16 |
 | [runbookhermes-aiops-agent](skills/runbookhermes-aiops-agent/) | [install](https://skills.sh/aradotso/hermes-skills/runbookhermes-aiops-agent) | [Tommy-yw/RunbookHermes](https://github.com/Tommy-yw/RunbookHermes) | 2026-05-16 |
 | [minions-hermes-mission-control](skills/minions-hermes-mission-control/) | [install](https://skills.sh/aradotso/hermes-skills/minions-hermes-mission-control) | [Agent-3-7/hermes-agent-mission-control](https://github.com/Agent-3-7/hermes-agent-mission-control) | 2026-05-16 |
+| [hermes-hudui-consciousness-monitor](skills/hermes-hudui-consciousness-monitor/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-hudui-consciousness-monitor) | [joeynyc/hermes-hudui](https://github.com/joeynyc/hermes-hudui) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
