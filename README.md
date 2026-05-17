@@ -41,6 +41,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-hudui-consciousness-monitor](skills/hermes-hudui-consciousness-monitor/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-hudui-consciousness-monitor) | [joeynyc/hermes-hudui](https://github.com/joeynyc/hermes-hudui) | 2026-05-17 |
 | [openclaw-mission-control](skills/openclaw-mission-control/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-mission-control) | [abhi1693/openclaw-mission-control](https://github.com/abhi1693/openclaw-mission-control) | 2026-05-17 |
 | [awesome-openclaw-skills-zh](skills/awesome-openclaw-skills-zh/) | [install](https://skills.sh/aradotso/hermes-skills/awesome-openclaw-skills-zh) | [clawdbot-ai/awesome-openclaw-skills-zh](https://github.com/clawdbot-ai/awesome-openclaw-skills-zh) | 2026-05-17 |
+| [openclaw-security-practice-guide](skills/openclaw-security-practice-guide/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-security-practice-guide) | [slowmist/openclaw-security-practice-guide](https://github.com/slowmist/openclaw-security-practice-guide) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
