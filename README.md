@@ -68,6 +68,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-agent-control-room](skills/hermes-agent-control-room/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-control-room) | [shannhk/hermes-agent-control-room](https://github.com/shannhk/hermes-agent-control-room) | 2026-05-17 |
 | [openclaw-admin-vue](skills/openclaw-admin-vue/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-admin-vue) | [itq5/OpenClaw-Admin](https://github.com/itq5/OpenClaw-Admin) | 2026-05-17 |
 | [hermes-swift-mac-app](skills/hermes-swift-mac-app/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-swift-mac-app) | [hermes-webui/hermes-swift-mac](https://github.com/hermes-webui/hermes-swift-mac) | 2026-05-17 |
+| [hermes-kanban-obsidian-integration](skills/hermes-kanban-obsidian-integration/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-kanban-obsidian-integration) | [GumbyEnder/hermes-kanban](https://github.com/GumbyEnder/hermes-kanban) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
