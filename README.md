@@ -51,6 +51,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-installer-deployment](skills/openclaw-installer-deployment/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-installer-deployment) | [miaoxworld/OpenClawInstaller](https://github.com/miaoxworld/OpenClawInstaller) | 2026-05-17 |
 | [openclaw-deployment-installer](skills/openclaw-deployment-installer/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-deployment-installer) | [miaoxworld/OpenClawInstaller](https://github.com/miaoxworld/OpenClawInstaller) | 2026-05-17 |
 | [openclaw101-resource-platform](skills/openclaw101-resource-platform/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw101-resource-platform) | [mengjian-github/openclaw101](https://github.com/mengjian-github/openclaw101) | 2026-05-17 |
+| [openclaw-awd-arena](skills/openclaw-awd-arena/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-awd-arena) | [LYiHub/OpenClaw-AWD-Arena](https://github.com/LYiHub/OpenClaw-AWD-Arena) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
