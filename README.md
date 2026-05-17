@@ -64,6 +64,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermesclaw-wechat-multi-agent](skills/hermesclaw-wechat-multi-agent/) | [install](https://skills.sh/aradotso/hermes-skills/hermesclaw-wechat-multi-agent) | [AaronWong1999/hermesclaw](https://github.com/AaronWong1999/hermesclaw) | 2026-05-17 |
 | [hermes-lcm-context-management](skills/hermes-lcm-context-management/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-lcm-context-management) | [stephenschoettler/hermes-lcm](https://github.com/stephenschoettler/hermes-lcm) | 2026-05-17 |
 | [hermes-labyrinth-observability](skills/hermes-labyrinth-observability/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-labyrinth-observability) | [stainlu/hermes-labyrinth](https://github.com/stainlu/hermes-labyrinth) | 2026-05-17 |
+| [hermes-agent-architecture](skills/hermes-agent-architecture/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-architecture) | [cclank/Hermes-Wiki](https://github.com/cclank/Hermes-Wiki) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
