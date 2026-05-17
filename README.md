@@ -61,6 +61,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-war-room-ui](skills/hermes-war-room-ui/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-war-room-ui) | [Naroh091/hermes-war-room](https://github.com/Naroh091/hermes-war-room) | 2026-05-17 |
 | [openclaw-wechat-integration](skills/openclaw-wechat-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-wechat-integration) | [freestylefly/openclaw-wechat](https://github.com/freestylefly/openclaw-wechat) | 2026-05-17 |
 | [hermes-control-interface-dashboard](skills/hermes-control-interface-dashboard/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-control-interface-dashboard) | [xaspx/hermes-control-interface](https://github.com/xaspx/hermes-control-interface) | 2026-05-17 |
+| [hermesclaw-wechat-multi-agent](skills/hermesclaw-wechat-multi-agent/) | [install](https://skills.sh/aradotso/hermes-skills/hermesclaw-wechat-multi-agent) | [AaronWong1999/hermesclaw](https://github.com/AaronWong1999/hermesclaw) | 2026-05-17 |
 <!-- SKILL_INDEX -->
 
 ---
