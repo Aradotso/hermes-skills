@@ -72,6 +72,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-agent-guide](skills/hermes-agent-guide/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-guide) | [jwangkun/hermes-agent-guide](https://github.com/jwangkun/hermes-agent-guide) | 2026-05-18 |
 | [hermes-agent-optimization](skills/hermes-agent-optimization/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-optimization) | [OnlyTerp/hermes-optimization-guide](https://github.com/OnlyTerp/hermes-optimization-guide) | 2026-05-18 |
 | [hermes-skins-customization](skills/hermes-skins-customization/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-skins-customization) | [joeynyc/hermes-skins](https://github.com/joeynyc/hermes-skins) | 2026-05-18 |
+| [openclaw-memx-memory-plugin](skills/openclaw-memx-memory-plugin/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-memx-memory-plugin) | [NeoLi00/openclaw-memx](https://github.com/NeoLi00/openclaw-memx) | 2026-05-18 |
 <!-- SKILL_INDEX -->
 
 ---
