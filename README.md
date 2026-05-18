@@ -74,6 +74,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-skins-customization](skills/hermes-skins-customization/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-skins-customization) | [joeynyc/hermes-skins](https://github.com/joeynyc/hermes-skins) | 2026-05-18 |
 | [openclaw-memx-memory-plugin](skills/openclaw-memx-memory-plugin/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-memx-memory-plugin) | [NeoLi00/openclaw-memx](https://github.com/NeoLi00/openclaw-memx) | 2026-05-18 |
 | [openclaw-qqbot-send-skill](skills/openclaw-qqbot-send-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-qqbot-send-skill) | [ZJunCher/openclaw-qqbot-send-skill](https://github.com/ZJunCher/openclaw-qqbot-send-skill) | 2026-05-18 |
+| [hermes-ide-terminal](skills/hermes-ide-terminal/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-ide-terminal) | [hermes-hq/hermes-ide](https://github.com/hermes-hq/hermes-ide) | 2026-05-18 |
 <!-- SKILL_INDEX -->
 
 ---
