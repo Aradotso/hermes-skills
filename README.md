@@ -70,6 +70,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-swift-mac-app](skills/hermes-swift-mac-app/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-swift-mac-app) | [hermes-webui/hermes-swift-mac](https://github.com/hermes-webui/hermes-swift-mac) | 2026-05-17 |
 | [hermes-kanban-obsidian-integration](skills/hermes-kanban-obsidian-integration/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-kanban-obsidian-integration) | [GumbyEnder/hermes-kanban](https://github.com/GumbyEnder/hermes-kanban) | 2026-05-17 |
 | [hermes-agent-guide](skills/hermes-agent-guide/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-guide) | [jwangkun/hermes-agent-guide](https://github.com/jwangkun/hermes-agent-guide) | 2026-05-18 |
+| [hermes-agent-optimization](skills/hermes-agent-optimization/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agent-optimization) | [OnlyTerp/hermes-optimization-guide](https://github.com/OnlyTerp/hermes-optimization-guide) | 2026-05-18 |
 <!-- SKILL_INDEX -->
 
 ---
