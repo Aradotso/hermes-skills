@@ -75,6 +75,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-memx-memory-plugin](skills/openclaw-memx-memory-plugin/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-memx-memory-plugin) | [NeoLi00/openclaw-memx](https://github.com/NeoLi00/openclaw-memx) | 2026-05-18 |
 | [openclaw-qqbot-send-skill](skills/openclaw-qqbot-send-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-qqbot-send-skill) | [ZJunCher/openclaw-qqbot-send-skill](https://github.com/ZJunCher/openclaw-qqbot-send-skill) | 2026-05-18 |
 | [hermes-ide-terminal](skills/hermes-ide-terminal/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-ide-terminal) | [hermes-hq/hermes-ide](https://github.com/hermes-hq/hermes-ide) | 2026-05-18 |
+| [openclaw-executive-assistant-workflows](skills/openclaw-executive-assistant-workflows/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-workflows) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-22 |
 <!-- SKILL_INDEX -->
 
 ---
