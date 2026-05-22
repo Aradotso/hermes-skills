@@ -78,6 +78,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-executive-assistant-workflows](skills/openclaw-executive-assistant-workflows/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-workflows) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-22 |
 | [hermes-edu-skills](skills/hermes-edu-skills/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-edu-skills) | [zhongweiv/hermes-edu-skills](https://github.com/zhongweiv/hermes-edu-skills) | 2026-05-22 |
 | [openclaw-executive-assistant-workshop](skills/openclaw-executive-assistant-workshop/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-workshop) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-22 |
+| [openclaw-executive-assistant-local](skills/openclaw-executive-assistant-local/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-local) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-22 |
 <!-- SKILL_INDEX -->
 
 ---
