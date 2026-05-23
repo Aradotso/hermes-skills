@@ -1,419 +1,483 @@
 ---
 name: openclaw-executive-assistant-workshop
-description: Build local-first AI executive assistant workflows with OpenClaw for data intake, operational memory, and communications triage
+description: Local-first OpenClaw workflows for building executive assistant automations with data intake, operational memory, and communications triage
 triggers:
-  - "help me build an executive assistant with OpenClaw"
-  - "how do I triage emails with OpenClaw"
-  - "create a daily log workflow with OpenClaw"
-  - "set up operational memory system"
-  - "build data intake review with AI"
-  - "how to use OpenClaw for communications management"
-  - "create local-first AI assistant workflows"
-  - "set up weekly summary automation with OpenClaw"
+  - how do I use OpenClaw for executive assistant tasks
+  - set up local OpenClaw workflows for productivity
+  - build an executive assistant with OpenClaw
+  - create OpenClaw intake and triage systems
+  - automate daily logs and weekly summaries with OpenClaw
+  - process emails offline with OpenClaw
+  - set up OpenClaw operational memory
+  - create markdown reports with OpenClaw prompts
 ---
 
 # OpenClaw Executive Assistant Workshop
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-This skill teaches you to build local-first, markdown-based executive assistant workflows using OpenClaw. The workshop covers three core patterns: data intake review, operational memory (daily/weekly logs), and offline communications triage. All workflows are local-only with no external integrations.
+This skill covers building local-first executive assistant workflows using OpenClaw. The project demonstrates three core automation patterns: data intake review, operational memory management, and offline communications triage. All workflows operate on local files and produce reviewable markdown artifacts.
 
 ## What This Project Does
 
-This is a workshop repository demonstrating how to build AI-powered executive assistant capabilities that:
+This is a workshop/starter project that teaches how to build executive assistant automations using OpenClaw with:
 
-- Stay entirely local (no cloud dependencies)
-- Process unknown files into structured reports
-- Turn work residue into momentum documentation
-- Triage exported emails into action lists
-- Generate reviewable markdown artifacts
+1. **Data Intake Review** - Transform unknown files into trustworthy intake reports
+2. **Operational Memory** - Convert work residue into daily logs and weekly summaries
+3. **Offline Communications Triage** - Process exported emails into action lists
 
-**Core Philosophy**: Copy/paste prompts, local files only, markdown outputs.
+Everything runs locally with no live integrations, using copy/paste prompts that generate markdown outputs.
 
 ## Repository Structure
 
-```text
+```
 code-along/
 ├── INDEX.md
-├── 01-data-intake-review/        # Unknown files → intake report
-│   ├── incoming/                 # Files to inspect
-│   ├── prompts/intake-review.md
+├── 01-data-intake-review/
+│   ├── incoming/          # Files to inspect
+│   ├── prompts/
+│   │   └── intake-review.md
 │   ├── outputs/
-│   └── expected/report-outline.md
-├── 02-operational-memory/        # Work residue → momentum docs
-│   ├── inbox/                    # Notes and residue
-│   ├── prompts/daily-log.md
-│   ├── prompts/weekly-hype.md
+│   │   └── intake-review.md
+│   └── expected/
+│       └── report-outline.md
+├── 02-operational-memory/
+│   ├── inbox/             # Notes and work residue
+│   ├── prompts/
+│   │   ├── daily-log.md
+│   │   └── weekly-hype.md
 │   ├── outputs/
-│   └── schedule/                 # Cron examples
-└── 03-offline-communications-triage/  # Exported mail → action list
-    ├── eml/                      # Email files
-    ├── prompts/email-triage.md
-    ├── outputs/
-    └── expected/report-outline.md
+│   │   ├── daily-log.md
+│   │   └── weekly-hype.md
+│   └── schedule/
+│       ├── cron-examples.md
+│       └── heartbeat-note.md
+├── 03-offline-communications-triage/
+│   ├── eml/               # Exported email files
+│   ├── prompts/
+│   │   └── email-triage.md
+│   ├── outputs/
+│   │   └── email-triage.md
+│   └── expected/
+│       └── report-outline.md
+└── mission-control/       # Optional dashboard
 ```
 
-## Installation
+## Getting Started
+
+### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw.git
 cd webinars-build-your-own-executive-assistant-with-openclaw
 
-# Open the walkthrough
+# Open the main walkthrough
 open webinar-runbook.html
 ```
 
-No package installation required — this is a prompt-based workflow.
+### Prerequisites
 
-## Exercise 1: Data Intake Review
+- OpenClaw or compatible AI assistant (Claude Code, Cursor, Codex)
+- Local file system access
+- Markdown viewer/editor
 
-**Goal**: Turn unknown files into a trustworthy intake report.
+## Core Workflows
 
-### Workflow
+### 1. Data Intake Review
 
-1. Place files to review in `code-along/01-data-intake-review/incoming/`
-2. Read the prompt template at `code-along/01-data-intake-review/prompts/intake-review.md`
-3. Pass the prompt + files to your AI agent (Claude, GPT-4, etc.)
-4. Save output to `code-along/01-data-intake-review/outputs/intake-review.md`
+Process unknown files from `incoming/` directory into structured reports.
 
-### Example Prompt Pattern
+**Workflow:**
+
+```bash
+cd code-along/01-data-intake-review
+# Review files in incoming/
+# Apply prompt from prompts/intake-review.md
+# Generate outputs/intake-review.md
+```
+
+**Expected Output Structure:**
 
 ```markdown
-# Data Intake Review
+# Intake Review Report
 
-Review all files in the incoming/ directory and create a structured report.
+## Summary
+[High-level overview of files]
 
-## Required Sections
+## Files Reviewed
+- file1.txt: [description and assessment]
+- file2.csv: [description and assessment]
 
-1. **Summary**: High-level overview of what was found
-2. **File Inventory**: List each file with type and size
-3. **Content Analysis**: Key findings from each file
-4. **Risk Assessment**: Security or privacy concerns
-5. **Recommended Actions**: What to do with each file
+## Recommendations
+[Action items and next steps]
+
+## Risk Assessment
+[Security or quality concerns]
+```
+
+**Prompt Pattern:**
+
+The `prompts/intake-review.md` file contains instructions for:
+- Cataloging file types and contents
+- Assessing data quality and completeness
+- Identifying security or privacy concerns
+- Generating actionable recommendations
+
+### 2. Operational Memory
+
+Transform daily work residue into momentum documents.
+
+**Daily Log Workflow:**
+
+```bash
+cd code-along/02-operational-memory
+# Process files from inbox/
+# Apply prompts/daily-log.md
+# Generate outputs/daily-log.md
+```
+
+**Daily Log Output:**
+
+```markdown
+# Daily Log - [DATE]
+
+## Completed
+- [Task completed with context]
+- [Another completed item]
+
+## In Progress
+- [Active work item]
+- [Blockers if any]
+
+## Notes
+[Important observations or decisions]
+
+## Tomorrow
+[Priorities for next day]
+```
+
+**Weekly Summary Workflow:**
+
+```bash
+# Apply prompts/weekly-hype.md to week's daily logs
+# Generate outputs/weekly-hype.md
+```
+
+**Weekly Summary Output:**
+
+```markdown
+# Weekly Hype - Week of [DATE]
+
+## Highlights
+[Major accomplishments]
+
+## Momentum
+[Progress on key initiatives]
+
+## Blockers Resolved
+[Problems solved]
+
+## Next Week Focus
+[Priorities and goals]
+```
+
+**Automation with Cron:**
+
+```bash
+# Example cron for daily log generation (schedule/cron-examples.md)
+0 17 * * * cd /path/to/project/code-along/02-operational-memory && ./generate-daily-log.sh
+
+# Example cron for weekly summary
+0 9 * * 1 cd /path/to/project/code-along/02-operational-memory && ./generate-weekly-hype.sh
+```
+
+### 3. Offline Communications Triage
+
+Process exported email files into actionable lists.
+
+**Workflow:**
+
+```bash
+cd code-along/03-offline-communications-triage
+# Place .eml files in eml/ directory
+# Apply prompts/email-triage.md
+# Generate outputs/email-triage.md
+```
+
+**Email Triage Output:**
+
+```markdown
+# Email Triage - [DATE]
+
+## Urgent Action Required
+- [Sender]: [Subject] - [Action needed by when]
+
+## Follow-up This Week
+- [Sender]: [Subject] - [What to do]
+
+## FYI / Reading
+- [Sender]: [Subject] - [Brief summary]
+
+## Archive/No Action
+- [Sender]: [Subject] - [Why no action needed]
+
+## Statistics
+Total emails: X
+Action required: Y
+```
+
+**Email Export Process:**
+
+Most email clients support .eml export:
+- Outlook: Drag email to desktop
+- Gmail: Use Google Takeout or "Download message"
+- Apple Mail: File → Save As
+
+## Prompt Engineering Patterns
+
+### Standard Prompt Structure
+
+All prompts in this project follow this pattern:
+
+```markdown
+# [Task Name]
+
+## Context
+[What files to process, where they are]
+
+## Instructions
+[Step-by-step processing requirements]
 
 ## Output Format
+[Exact markdown structure expected]
 
-Markdown with clear headings and bullet points.
+## Guidelines
+- [Specific rule 1]
+- [Specific rule 2]
 ```
 
-### Example Agent Command
+### Reusable Prompt Components
 
-```bash
-# Using Claude Code or similar
-claude "Read code-along/01-data-intake-review/prompts/intake-review.md and all files in code-along/01-data-intake-review/incoming/, then generate intake-review.md in outputs/"
+**File Cataloging:**
+```
+List each file with:
+- Filename
+- Type/format
+- Size
+- Last modified
+- Brief content description
 ```
 
-## Exercise 2: Operational Memory
-
-**Goal**: Turn work residue into daily logs and weekly summaries.
-
-### Daily Log Workflow
-
-```markdown
-# Daily Log Prompt Structure
-
-Review inbox/ folder contents from today and create a daily log.
-
-## Sections
-
-1. **Date**: ISO format (YYYY-MM-DD)
-2. **Completed**: What got done
-3. **In Progress**: Active work
-4. **Blocked**: Issues preventing progress
-5. **Notes**: Quick observations
-6. **Tomorrow**: Planned focus
-
-Output: `outputs/daily-log-YYYY-MM-DD.md`
+**Risk Assessment:**
+```
+Evaluate for:
+- Sensitive data (PII, credentials)
+- Incomplete or corrupted content
+- Version conflicts
+- Missing dependencies
 ```
 
-### Weekly Summary Workflow
-
-```markdown
-# Weekly Hype Prompt Structure
-
-Review all daily logs from the past week and create a weekly summary.
-
-## Sections
-
-1. **Week Of**: Date range
-2. **Highlights**: Top 3-5 accomplishments
-3. **Momentum**: Themes and patterns
-4. **Challenges**: Recurring blockers
-5. **Next Week**: Forward-looking priorities
-
-Output: `outputs/weekly-hype-YYYY-WW.md`
+**Action Generation:**
+```
+For each actionable item, specify:
+- What needs to be done
+- Who should do it
+- When it's needed
+- Why it matters
 ```
 
-### Automation Example
-
-```bash
-# Add to crontab for daily execution
-# Run at 6 PM daily
-0 18 * * * cd /path/to/code-along/02-operational-memory && /usr/local/bin/ai-agent "$(cat prompts/daily-log.md)" > outputs/daily-log-$(date +\%Y-\%m-\%d).md
-
-# Run weekly summary on Friday at 5 PM
-0 17 * * 5 cd /path/to/code-along/02-operational-memory && /usr/local/bin/ai-agent "$(cat prompts/weekly-hype.md)" > outputs/weekly-hype-$(date +\%Y-W\%V).md
-```
-
-### Heartbeat Pattern
-
-Create a recurring note to trigger memory updates:
-
-```markdown
-<!-- code-along/02-operational-memory/inbox/HEARTBEAT.md -->
-
-# Daily Heartbeat - {{DATE}}
-
-## What happened today?
-
-- 
-
-## What's top of mind?
-
-- 
-
-## Any blockers?
-
-- 
-
----
-This file is processed daily by the operational memory system.
-```
-
-## Exercise 3: Offline Communications Triage
-
-**Goal**: Turn exported email files into an action list.
-
-### Workflow
-
-1. Export emails to `.eml` format and save to `code-along/03-offline-communications-triage/eml/`
-2. Use the triage prompt at `code-along/03-offline-communications-triage/prompts/email-triage.md`
-3. Generate action list at `outputs/email-triage.md`
-
-### Example Triage Prompt
-
-```markdown
-# Email Triage
-
-Analyze all .eml files in the eml/ directory.
-
-## Classification
-
-For each email, determine:
-
-1. **Priority**: High / Medium / Low
-2. **Action Required**: Response / Review / Delegate / Archive
-3. **Time Estimate**: How long to handle
-4. **Deadline**: If any mentioned
-
-## Output Format
-
-### Summary
-- Total emails: X
-- High priority: Y
-- Action required: Z
-
-### High Priority Actions
-- [ ] [From] Subject - Action needed (deadline)
-
-### Medium Priority
-- [ ] [From] Subject - Action needed
-
-### Low Priority / FYI
-- [From] Subject - Note
-
-### Archive/No Action
-- [From] Subject
-```
-
-### Example Agent Command
-
-```bash
-# Process all emails in eml/ folder
-ai-agent "$(cat code-along/03-offline-communications-triage/prompts/email-triage.md)" \
-  --context "code-along/03-offline-communications-triage/eml/*.eml" \
-  > code-along/03-offline-communications-triage/outputs/email-triage-$(date +%Y-%m-%d).md
-```
-
-## Configuration Patterns
+## Configuration
 
 ### Environment Variables
 
 ```bash
-# ~/.zshrc or ~/.bashrc
+# Optional: Set default paths
+export OPENCLAW_INTAKE_DIR="$HOME/inbox"
+export OPENCLAW_MEMORY_DIR="$HOME/work-logs"
+export OPENCLAW_OUTPUT_DIR="$HOME/assistant-reports"
 
-export OPENCLAW_WORKSPACE="$HOME/openclaw-assistant"
-export OPENCLAW_DAILY_TIME="18:00"
-export OPENCLAW_WEEKLY_DAY="Friday"
-export AI_AGENT_CMD="claude"  # or "cursor", "codex", etc.
+# Optional: Set AI provider
+export OPENCLAW_AI_PROVIDER="claude"
+export ANTHROPIC_API_KEY="$YOUR_API_KEY"
 ```
 
-### Folder Structure Convention
+### Customizing Prompts
 
-```text
-$OPENCLAW_WORKSPACE/
-├── data-intake/
-│   ├── incoming/
-│   ├── prompts/
-│   └── outputs/
-├── operational-memory/
-│   ├── inbox/
-│   ├── daily-logs/
-│   ├── weekly-summaries/
-│   └── prompts/
-└── communications/
-    ├── eml/
-    ├── outputs/
-    └── prompts/
+Edit prompt files to match your workflow:
+
+```bash
+# Copy and modify default prompts
+cp prompts/daily-log.md prompts/daily-log-custom.md
+
+# Add custom sections
+# Adjust tone and format
+# Include domain-specific requirements
 ```
 
-## Common Patterns
+## Common Use Cases
 
-### Pattern: Batch Processing
+### Morning Briefing Automation
 
 ```bash
 #!/bin/bash
-# batch-intake.sh
+# morning-briefing.sh
 
-INTAKE_DIR="code-along/01-data-intake-review"
+cd code-along/02-operational-memory
+cat inbox/*.md | openclaw apply prompts/daily-log.md > outputs/today.md
 
-for file in "$INTAKE_DIR/incoming"/*; do
-  echo "Processing: $file"
-  ai-agent "Review $file and append findings to $INTAKE_DIR/outputs/batch-report.md"
-done
+cd ../03-offline-communications-triage
+openclaw apply prompts/email-triage.md eml/*.eml > outputs/emails-today.md
+
+# Combine reports
+cat outputs/today.md outputs/emails-today.md > mission-control/morning-brief.md
 ```
 
-### Pattern: Template Reuse
+### End of Day Wrap-up
 
 ```bash
-# Save your best prompts as templates
-mkdir -p ~/.openclaw-templates
+#!/bin/bash
+# eod-wrap.sh
 
-cp code-along/02-operational-memory/prompts/daily-log.md \
-   ~/.openclaw-templates/daily-log-template.md
+# Capture today's work
+echo "## Work completed:" > inbox/eod-$(date +%Y-%m-%d).md
+# Add your notes here or pipe from other tools
 
-# Use them anywhere
-ai-agent "$(cat ~/.openclaw-templates/daily-log-template.md)"
+cd code-along/02-operational-memory
+openclaw apply prompts/daily-log.md > outputs/daily-log-$(date +%Y-%m-%d).md
 ```
 
-### Pattern: Incremental Updates
+### Weekly Review
 
-```markdown
-<!-- outputs/daily-log.md -->
+```bash
+#!/bin/bash
+# weekly-review.sh
 
-# Daily Log
-
-## 2026-05-15
-- Completed project review
-- Started new feature
-
-## 2026-05-14
-- Team meeting
-- Code review
-
----
-
-**Prompt for updates**: Append today's work to this log following the date format.
+cd code-along/02-operational-memory
+# Concatenate week's daily logs
+cat outputs/daily-log-*.md | openclaw apply prompts/weekly-hype.md > outputs/weekly-$(date +%Y-W%V).md
 ```
 
 ## Troubleshooting
 
-### Issue: Files Not Found
+### Prompts Not Generating Expected Output
 
+**Issue:** Output doesn't match expected structure
+
+**Solutions:**
+- Review `expected/report-outline.md` for reference format
+- Ensure all input files are in correct directory
+- Check that prompt references correct file paths
+- Verify markdown syntax in prompt instructions
+
+### File Processing Errors
+
+**Issue:** Cannot read files from incoming/inbox directories
+
+**Solutions:**
 ```bash
-# Verify paths
+# Check file permissions
 ls -la code-along/01-data-intake-review/incoming/
 
-# Use absolute paths
-AI_WORKSPACE="$(pwd)/code-along"
-ai-agent --context "$AI_WORKSPACE/01-data-intake-review/incoming/*"
-```
-
-### Issue: Prompt Not Working
-
-```bash
-# Test prompt syntax
-cat code-along/02-operational-memory/prompts/daily-log.md | head -20
-
 # Verify file encoding
-file code-along/02-operational-memory/prompts/daily-log.md
+file incoming/*
+
+# Check for hidden characters
+cat -A incoming/problematic-file.txt
 ```
 
-### Issue: Cron Job Fails
+### Missing Dependencies
 
+**Issue:** Cron jobs fail silently
+
+**Solutions:**
 ```bash
-# Test cron command manually
-cd /path/to/code-along/02-operational-memory
-/usr/local/bin/ai-agent "$(cat prompts/daily-log.md)"
+# Test script manually first
+bash schedule/generate-daily-log.sh
 
 # Check cron logs
-grep CRON /var/log/syslog  # Linux
-log show --predicate 'process == "cron"' --last 1h  # macOS
+grep CRON /var/log/syslog
+
+# Use full paths in cron
+0 17 * * * /usr/bin/bash /full/path/to/script.sh >> /tmp/cron.log 2>&1
 ```
 
-### Issue: Output Quality Poor
+### Output Quality Issues
 
-1. **Add examples to prompts**: Show desired format
-2. **Increase context**: Include more reference files
-3. **Iterate prompt wording**: Be more specific about structure
-4. **Use templates**: Start with expected outline in prompt
+**Issue:** Reports lack detail or miss important items
 
-## Integration Example
-
-```bash
-#!/bin/bash
-# run-daily-workflow.sh
-
-set -e
-
-WORKSPACE="$HOME/openclaw-assistant"
-DATE=$(date +%Y-%m-%d)
-
-echo "Starting daily workflow for $DATE"
-
-# 1. Process any incoming data
-if [ -n "$(ls -A $WORKSPACE/data-intake/incoming/ 2>/dev/null)" ]; then
-  echo "Processing incoming files..."
-  ai-agent "$(cat $WORKSPACE/data-intake/prompts/intake-review.md)" \
-    > "$WORKSPACE/data-intake/outputs/intake-$DATE.md"
-fi
-
-# 2. Generate daily log
-echo "Generating daily log..."
-ai-agent "$(cat $WORKSPACE/operational-memory/prompts/daily-log.md)" \
-  > "$WORKSPACE/operational-memory/daily-logs/log-$DATE.md"
-
-# 3. Triage communications if any
-if [ -n "$(ls -A $WORKSPACE/communications/eml/ 2>/dev/null)" ]; then
-  echo "Triaging communications..."
-  ai-agent "$(cat $WORKSPACE/communications/prompts/email-triage.md)" \
-    > "$WORKSPACE/communications/outputs/triage-$DATE.md"
-fi
-
-echo "Daily workflow complete. Outputs in $WORKSPACE"
-```
+**Solutions:**
+- Add more examples to prompt instructions
+- Increase specificity in "Guidelines" section
+- Include edge cases in prompt
+- Review and iterate on prompt wording
 
 ## Best Practices
 
-1. **Review outputs manually** — AI assists, you decide
-2. **Keep prompts in version control** — Track what works
-3. **Start simple** — One workflow at a time
-4. **Use consistent naming** — YYYY-MM-DD for dates
-5. **Archive regularly** — Move old outputs to archive/ folders
-6. **Iterate prompts** — Refine based on output quality
-7. **Local first** — No API keys, no cloud dependencies
+### Prompt Maintenance
 
-## Next Steps
+```markdown
+# Version your prompts
+prompts/
+  daily-log-v1.md
+  daily-log-v2.md
+  daily-log.md -> daily-log-v2.md
 
-After mastering these three exercises:
+# Document changes
+## Changelog
+- v2: Added "Blockers" section, improved action item detection
+- v1: Initial version
+```
 
-1. Customize prompts for your workflow
-2. Add new exercise folders for different use cases
-3. Build a simple dashboard in `mission-control/`
-4. Schedule automations with cron
-5. Create prompt libraries for repeated tasks
+### Data Organization
 
----
+```bash
+# Use dated directories for outputs
+outputs/
+  2026-05/
+    daily-log-2026-05-11.md
+    daily-log-2026-05-12.md
+  2026-04/
+    ...
+```
 
-This workshop teaches OpenClaw patterns, but the techniques work with any AI agent that can read local files and follow markdown prompts.
+### Security
+
+```bash
+# Never commit sensitive data
+echo "incoming/*.eml" >> .gitignore
+echo "outputs/*" >> .gitignore
+echo "inbox/*" >> .gitignore
+
+# Review generated outputs before sharing
+grep -i "password\|secret\|key\|token" outputs/*.md
+```
+
+## Integration Examples
+
+### With Task Managers
+
+```bash
+# Extract action items from daily log
+grep "^- \[ \]" outputs/daily-log.md > tasks.txt
+
+# Convert to your task manager format
+# (Todoist, Things, etc.)
+```
+
+### With Note-Taking Systems
+
+```bash
+# Copy to Obsidian vault
+cp outputs/daily-log-$(date +%Y-%m-%d).md "$OBSIDIAN_VAULT/Logs/"
+
+# Add frontmatter
+sed -i '1i---\ndate: '$(date +%Y-%m-%d)'\ntags: [daily-log]\n---\n' \
+  "$OBSIDIAN_VAULT/Logs/daily-log-$(date +%Y-%m-%d).md"
+```
+
+## Additional Resources
+
+- Workshop walkthrough: `webinar-runbook.html`
+- DataCamp webinar: https://www.datacamp.com/webinars/build-your-own-executive-assistant-with-openclaw
+- Exercise index: `code-along/INDEX.md`
