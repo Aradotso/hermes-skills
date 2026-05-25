@@ -82,6 +82,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-executive-assistant-webinar](skills/openclaw-executive-assistant-webinar/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-webinar) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-22 |
 | [build-your-own-openclaw-agent-tutorial](skills/build-your-own-openclaw-agent-tutorial/) | [install](https://skills.sh/aradotso/hermes-skills/build-your-own-openclaw-agent-tutorial) | [czl9707/build-your-own-openclaw](https://github.com/czl9707/build-your-own-openclaw) | 2026-05-23 |
 | [openclaw-executive-assistant-webinars](skills/openclaw-executive-assistant-webinars/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-executive-assistant-webinars) | [dandenney/webinars-build-your-own-executive-assistant-with-openclaw](https://github.com/dandenney/webinars-build-your-own-executive-assistant-with-openclaw) | 2026-05-23 |
+| [voltagent-openclaw-skill-loader](skills/voltagent-openclaw-skill-loader/) | [install](https://skills.sh/aradotso/hermes-skills/voltagent-openclaw-skill-loader) | [gimgyeon/loader-openclaw-skills](https://github.com/gimgyeon/loader-openclaw-skills) | 2026-05-25 |
 <!-- SKILL_INDEX -->
 
 ---
