@@ -85,6 +85,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [voltagent-openclaw-skill-loader](skills/voltagent-openclaw-skill-loader/) | [install](https://skills.sh/aradotso/hermes-skills/voltagent-openclaw-skill-loader) | [gimgyeon/loader-openclaw-skills](https://github.com/gimgyeon/loader-openclaw-skills) | 2026-05-25 |
 | [hermespet-macos-ai-companion](skills/hermespet-macos-ai-companion/) | [install](https://skills.sh/aradotso/hermes-skills/hermespet-macos-ai-companion) | [basionwang-bot/HermesPet](https://github.com/basionwang-bot/HermesPet) | 2026-05-25 |
 | [polymarket-openclaw-trading-bot](skills/polymarket-openclaw-trading-bot/) | [install](https://skills.sh/aradotso/hermes-skills/polymarket-openclaw-trading-bot) | [Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot](https://github.com/Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot) | 2026-05-29 |
+| [polymarket-openclaw-ai-arbitrage-bot](skills/polymarket-openclaw-ai-arbitrage-bot/) | [install](https://skills.sh/aradotso/hermes-skills/polymarket-openclaw-ai-arbitrage-bot) | [Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot](https://github.com/Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot) | 2026-05-29 |
 <!-- SKILL_INDEX -->
 
 ---
