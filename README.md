@@ -89,6 +89,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [polymarket-openclaw-ai-trading-bot](skills/polymarket-openclaw-ai-trading-bot/) | [install](https://skills.sh/aradotso/hermes-skills/polymarket-openclaw-ai-trading-bot) | [Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot](https://github.com/Predictly-MCP-Labs/polymarket-openclaw-ai-btc-arbitrage-trading-bot) | 2026-05-29 |
 | [deepseek-openclaw-config-generator](skills/deepseek-openclaw-config-generator/) | [install](https://skills.sh/aradotso/hermes-skills/deepseek-openclaw-config-generator) | [LawmakerTreasure/deepseek-openclaw](https://github.com/LawmakerTreasure/deepseek-openclaw) | 2026-05-31 |
 | [metamask-openclaw-wallet-integration](skills/metamask-openclaw-wallet-integration/) | [install](https://skills.sh/aradotso/hermes-skills/metamask-openclaw-wallet-integration) | [veryyoldman/metamask-openclaw](https://github.com/veryyoldman/metamask-openclaw) | 2026-05-31 |
+| [deepseek-openclaw-integration](skills/deepseek-openclaw-integration/) | [install](https://skills.sh/aradotso/hermes-skills/deepseek-openclaw-integration) | [MageExemplify/deepseek-openclaw-648](https://github.com/MageExemplify/deepseek-openclaw-648) | 2026-06-04 |
 <!-- SKILL_INDEX -->
 
 ---
