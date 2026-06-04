@@ -1,26 +1,33 @@
 ---
 name: deepseek-openclaw-integration
-description: Build and configure OpenClaw integrations with DeepSeek AI models using this local-first web app starter
+description: Generate OpenClaw configuration and onboarding commands for DeepSeek AI models with a local-first, secret-safe UI.
 triggers:
-  - how do I connect DeepSeek to OpenClaw
-  - set up DeepSeek with OpenClaw
+  - how do I set up DeepSeek with OpenClaw
+  - generate OpenClaw command for DeepSeek
   - configure DeepSeek models in OpenClaw
-  - generate OpenClaw onboarding command for DeepSeek
-  - create OpenClaw config for DeepSeek API
-  - which DeepSeek models work with OpenClaw
-  - troubleshoot DeepSeek OpenClaw integration
-  - show me DeepSeek OpenClaw configuration examples
+  - create DeepSeek OpenClaw integration
+  - what DeepSeek models work with OpenClaw
+  - show me DeepSeek OpenClaw config
+  - how to use DeepSeek reasoner with OpenClaw
+  - set up DeepSeek API key for OpenClaw
 ---
 
-# DeepSeek OpenClaw Integration Skill
+# DeepSeek OpenClaw Integration
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-DeepSeek OpenClaw is a local-first web application that helps developers configure DeepSeek AI models with OpenClaw, an agent framework. The app generates OpenClaw onboarding commands and configuration snippets without sending API keys to any backend, ensuring secure local credential management.
+**DeepSeek OpenClaw** is a local-first web application that helps developers integrate DeepSeek AI models with OpenClaw agent framework. It generates copy-ready onboarding commands and configuration snippets without sending API keys to any backend, ensuring secure local-only credential handling.
+
+## What It Does
+
+- **Model Catalog**: Browse DeepSeek models compatible with OpenClaw (v4-flash, v4-pro, chat, reasoner)
+- **Command Generator**: Create OpenClaw onboarding commands with proper DeepSeek provider syntax
+- **Config Snippets**: Generate redacted OpenClaw configuration JSON for DeepSeek integration
+- **Secret-Safe UI**: All credential handling happens client-side; secrets never leave your browser
 
 ## Installation
 
-### Quick Start
+### Clone and Run Locally
 
 ```bash
 git clone https://github.com/MageExemplify/deepseek-openclaw-648.git
@@ -42,96 +49,80 @@ npm run build
 npm run preview
 ```
 
-## Project Architecture
+## Project Structure
 
-The application is built with:
+```
+src/
+├── App.tsx           # Main React component
+├── main.tsx          # Entry point
+├── models.ts         # DeepSeek model definitions
+├── openclaw.ts       # OpenClaw command/config generators
+├── types.ts          # TypeScript interfaces
+└── styles.css        # UI styles
+```
 
-- **Vite** — Fast build tool and dev server
-- **React** — UI framework
-- **TypeScript** — Type safety
-- **Local-first architecture** — No backend, all processing in browser
+## Key Components
 
-### Key Source Files
+### Model Definitions (`models.ts`)
 
-- `src/App.tsx` — Main application component
-- `src/models.ts` — DeepSeek model catalog
-- `src/openclaw.ts` — OpenClaw command/config generation logic
-- `src/types.ts` — TypeScript definitions
-- `src/styles.css` — Styling
-
-## DeepSeek Models for OpenClaw
-
-The starter includes references to these DeepSeek models:
-
-| Model ID | Use Case |
-|----------|----------|
-| `deepseek/deepseek-v4-flash` | Fast everyday automation (default) |
-| `deepseek/deepseek-v4-pro` | Complex coding and planning tasks |
-| `deepseek/deepseek-chat` | General conversational chat |
-| `deepseek/deepseek-reasoner` | Reasoning-focused sessions |
-
-## Model Configuration (models.ts)
+The app includes pre-configured DeepSeek models for OpenClaw:
 
 ```typescript
-// src/models.ts
 export interface DeepSeekModel {
   id: string;
   name: string;
   description: string;
   useCase: string;
-  recommended?: boolean;
 }
 
-export const deepseekModels: DeepSeekModel[] = [
+export const DEEPSEEK_MODELS: DeepSeekModel[] = [
   {
     id: "deepseek/deepseek-v4-flash",
-    name: "DeepSeek V4 Flash",
-    description: "Fast, efficient model for everyday tasks",
-    useCase: "Default fast path for everyday automation",
-    recommended: true
+    name: "DeepSeek v4 Flash",
+    description: "Fast, efficient model for everyday automation",
+    useCase: "Quick responses, general tasks"
   },
   {
     id: "deepseek/deepseek-v4-pro",
-    name: "DeepSeek V4 Pro",
-    description: "More powerful model for complex reasoning",
-    useCase: "Stronger model for complex coding and planning"
+    name: "DeepSeek v4 Pro",
+    description: "Advanced model for complex coding and planning",
+    useCase: "Complex reasoning, code generation"
   },
   {
     id: "deepseek/deepseek-chat",
     name: "DeepSeek Chat",
-    description: "General-purpose chat model",
-    useCase: "General non-thinking chat surface"
+    description: "General-purpose conversational model",
+    useCase: "Standard chat interactions"
   },
   {
     id: "deepseek/deepseek-reasoner",
     name: "DeepSeek Reasoner",
-    description: "Specialized reasoning model",
-    useCase: "Reasoning-focused sessions"
+    description: "Reasoning-focused model for deep analysis",
+    useCase: "Multi-step reasoning, analysis"
   }
 ];
 ```
 
-## OpenClaw Command Generation (openclaw.ts)
+### OpenClaw Command Generator (`openclaw.ts`)
 
 ```typescript
-// src/openclaw.ts
-export interface OpenClawConfig {
-  model: string;
-  apiKey: string;
-}
-
-export function generateOnboardingCommand(config: OpenClawConfig): string {
-  const keyValue = config.apiKey 
-    ? config.apiKey 
-    : "${DEEPSEEK_API_KEY}";
+export function generateOnboardingCommand(
+  modelId: string,
+  apiKey?: string
+): string {
+  const keyVar = apiKey ? apiKey : "${DEEPSEEK_API_KEY}";
   
-  return `openclaw init --provider deepseek --model ${config.model} --api-key ${keyValue}`;
+  return `openclaw onboard \\
+  --provider deepseek \\
+  --model ${modelId} \\
+  --api-key ${keyVar}`;
 }
 
-export function generateConfigSnippet(config: OpenClawConfig): string {
-  const redactedKey = config.apiKey 
-    ? "sk-***redacted***" 
-    : "${DEEPSEEK_API_KEY}";
+export function generateConfigSnippet(
+  modelId: string,
+  apiKey?: string
+): string {
+  const redactedKey = apiKey ? "sk-***redacted***" : "${DEEPSEEK_API_KEY}";
   
   return JSON.stringify({
     env: {
@@ -140,7 +131,7 @@ export function generateConfigSnippet(config: OpenClawConfig): string {
     agents: {
       defaults: {
         model: {
-          primary: config.model
+          primary: modelId
         }
       }
     }
@@ -148,52 +139,40 @@ export function generateConfigSnippet(config: OpenClawConfig): string {
 }
 ```
 
-## App Component Example (App.tsx)
+### Main App Component (`App.tsx`)
 
 ```typescript
-// src/App.tsx
 import React, { useState } from 'react';
-import { deepseekModels } from './models';
+import { DEEPSEEK_MODELS } from './models';
 import { generateOnboardingCommand, generateConfigSnippet } from './openclaw';
-import './styles.css';
 
 export default function App() {
-  const [selectedModel, setSelectedModel] = useState(deepseekModels[0].id);
+  const [selectedModel, setSelectedModel] = useState(DEEPSEEK_MODELS[0].id);
   const [apiKey, setApiKey] = useState('');
+  const [showKey, setShowKey] = useState(false);
 
-  const command = generateOnboardingCommand({ 
-    model: selectedModel, 
-    apiKey 
-  });
-  
-  const configSnippet = generateConfigSnippet({ 
-    model: selectedModel, 
-    apiKey 
-  });
+  const command = generateOnboardingCommand(selectedModel, apiKey);
+  const config = generateConfigSnippet(selectedModel, apiKey);
 
   return (
-    <div className="app">
+    <div className="container">
       <header>
         <h1>DeepSeek OpenClaw</h1>
-        <p>Configure DeepSeek models for OpenClaw locally</p>
+        <p>Configure DeepSeek models for OpenClaw integration</p>
       </header>
 
       <section className="model-selector">
-        <h2>Select DeepSeek Model</h2>
-        {deepseekModels.map(model => (
+        <h2>Select Model</h2>
+        {DEEPSEEK_MODELS.map(model => (
           <label key={model.id}>
             <input
               type="radio"
-              name="model"
               value={model.id}
               checked={selectedModel === model.id}
               onChange={(e) => setSelectedModel(e.target.value)}
             />
-            <div>
-              <strong>{model.name}</strong>
-              {model.recommended && <span className="badge">Recommended</span>}
-              <p>{model.description}</p>
-            </div>
+            <strong>{model.name}</strong>
+            <span>{model.description}</span>
           </label>
         ))}
       </section>
@@ -201,79 +180,57 @@ export default function App() {
       <section className="api-key-input">
         <h2>DeepSeek API Key (Optional)</h2>
         <input
-          type="password"
-          placeholder="Leave empty to use $DEEPSEEK_API_KEY"
+          type={showKey ? "text" : "password"}
+          placeholder="sk-..."
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
         />
+        <button onClick={() => setShowKey(!showKey)}>
+          {showKey ? "Hide" : "Show"}
+        </button>
       </section>
 
       <section className="output">
         <h2>Onboarding Command</h2>
-        <pre><code>{command}</code></pre>
-        <button onClick={() => navigator.clipboard.writeText(command)}>
-          Copy Command
-        </button>
-      </section>
-
-      <section className="output">
-        <h2>OpenClaw Config Snippet</h2>
-        <pre><code>{configSnippet}</code></pre>
-        <button onClick={() => navigator.clipboard.writeText(configSnippet)}>
-          Copy Config
-        </button>
+        <pre>{command}</pre>
+        
+        <h2>OpenClaw Config</h2>
+        <pre>{config}</pre>
       </section>
     </div>
   );
 }
 ```
 
-## Environment Variables
+## OpenClaw Integration Patterns
 
-Create `.env` in project root:
+### Environment Variable Setup
 
-```bash
-# .env
-DEEPSEEK_API_KEY=your_api_key_here
-```
-
-**Never commit `.env` files.** Use `.env.example` as a template:
+Always use environment variables for API keys:
 
 ```bash
-# .env.example
-DEEPSEEK_API_KEY=sk-your-key-here
+export DEEPSEEK_API_KEY="sk-your-actual-key-here"
 ```
 
-## OpenClaw Configuration Patterns
+### Manual OpenClaw Configuration
 
-### Basic Agent Configuration
+Create or update `~/.openclaw/config.json`:
 
 ```json
 {
   "env": {
     "DEEPSEEK_API_KEY": "${DEEPSEEK_API_KEY}"
+  },
+  "providers": {
+    "deepseek": {
+      "apiKey": "${DEEPSEEK_API_KEY}"
+    }
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "deepseek/deepseek-v4-flash"
-      }
-    }
-  }
-}
-```
-
-### Multi-Model Configuration
-
-```json
-{
-  "env": {
-    "DEEPSEEK_API_KEY": "${DEEPSEEK_API_KEY}"
-  },
-  "agents": {
-    "fast-agent": {
-      "model": {
-        "primary": "deepseek/deepseek-v4-flash"
+        "primary": "deepseek/deepseek-v4-flash",
+        "fallback": "deepseek/deepseek-chat"
       }
     },
     "reasoning-agent": {
@@ -281,7 +238,7 @@ DEEPSEEK_API_KEY=sk-your-key-here
         "primary": "deepseek/deepseek-reasoner"
       }
     },
-    "pro-agent": {
+    "code-agent": {
       "model": {
         "primary": "deepseek/deepseek-v4-pro"
       }
@@ -290,284 +247,264 @@ DEEPSEEK_API_KEY=sk-your-key-here
 }
 ```
 
-### Channel-Specific Configuration
+### Onboarding Command Examples
 
-```json
-{
-  "env": {
-    "DEEPSEEK_API_KEY": "${DEEPSEEK_API_KEY}"
-  },
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "deepseek/deepseek-v4-flash"
-      },
-      "channels": {
-        "slack": {
-          "enabled": true,
-          "allowlist": ["C01234567"]
-        }
-      }
-    }
-  }
-}
-```
-
-## OpenClaw CLI Commands
-
-### Initialize with DeepSeek
-
+**Quick setup with Flash model:**
 ```bash
-# Using environment variable
-export DEEPSEEK_API_KEY=sk-your-key-here
-openclaw init --provider deepseek --model deepseek/deepseek-v4-flash
-
-# Using inline API key (not recommended for production)
-openclaw init --provider deepseek --model deepseek/deepseek-v4-flash --api-key sk-your-key-here
+openclaw onboard \
+  --provider deepseek \
+  --model deepseek/deepseek-v4-flash \
+  --api-key ${DEEPSEEK_API_KEY}
 ```
 
-### Test Connection
-
+**Complex reasoning setup:**
 ```bash
-openclaw test-connection --provider deepseek
+openclaw onboard \
+  --provider deepseek \
+  --model deepseek/deepseek-reasoner \
+  --api-key ${DEEPSEEK_API_KEY} \
+  --agent reasoning-assistant
 ```
 
-### List Available Models
-
+**Multi-agent configuration:**
 ```bash
-openclaw models list --provider deepseek
+# Fast agent
+openclaw agent create fast-agent \
+  --model deepseek/deepseek-v4-flash
+
+# Pro agent
+openclaw agent create code-agent \
+  --model deepseek/deepseek-v4-pro
 ```
 
-### Update Agent Configuration
+## Model Selection Guide
 
-```bash
-openclaw config set agents.defaults.model.primary deepseek/deepseek-v4-pro
-```
-
-## TypeScript Types
-
-```typescript
-// src/types.ts
-export interface OpenClawConfig {
-  env: {
-    DEEPSEEK_API_KEY: string;
-  };
-  agents: {
-    [agentName: string]: AgentConfig;
-  };
-}
-
-export interface AgentConfig {
-  model: {
-    primary: string;
-    fallback?: string;
-  };
-  channels?: {
-    [channelType: string]: ChannelConfig;
-  };
-}
-
-export interface ChannelConfig {
-  enabled: boolean;
-  allowlist?: string[];
-  mentionRules?: string[];
-}
-
-export interface DeepSeekModel {
-  id: string;
-  name: string;
-  description: string;
-  useCase: string;
-  recommended?: boolean;
-}
-```
+| Model | Best For | Speed | Reasoning Depth |
+|-------|----------|-------|-----------------|
+| `deepseek-v4-flash` | Quick responses, automation | ⚡⚡⚡ | ⭐⭐ |
+| `deepseek-v4-pro` | Complex code, planning | ⚡⚡ | ⭐⭐⭐⭐ |
+| `deepseek-chat` | General conversation | ⚡⚡⚡ | ⭐⭐⭐ |
+| `deepseek-reasoner` | Deep analysis, multi-step | ⚡ | ⭐⭐⭐⭐⭐ |
 
 ## Security Best Practices
 
-### API Key Management
+### Never Hardcode Keys
 
-**DO:**
-- Store API keys in environment variables
-- Use OpenClaw auth profiles for production
-- Use secret management services (AWS Secrets Manager, Vault)
-- Redact keys in logs and screenshots
-- Use `.gitignore` to exclude `.env` files
+❌ **Wrong:**
+```typescript
+const apiKey = "sk-abc123def456";
+```
 
-**DON'T:**
-- Commit API keys to version control
-- Hardcode keys in source files
-- Share keys in screenshots or documentation
-- Use production keys in development
+✅ **Correct:**
+```typescript
+const apiKey = process.env.DEEPSEEK_API_KEY;
+```
 
-### OpenClaw Channel Security
+### Use .env Files
 
-```json
-{
-  "agents": {
-    "defaults": {
-      "channels": {
-        "slack": {
-          "enabled": true,
-          "allowlist": ["C01234567", "C89012345"],
-          "mentionRules": ["@assistant", "hey bot"]
-        }
-      }
-    }
-  }
+Create `.env` (never commit this):
+```bash
+DEEPSEEK_API_KEY=sk-your-actual-key
+```
+
+Load in your app:
+```typescript
+import dotenv from 'dotenv';
+dotenv.config();
+
+const apiKey = process.env.DEEPSEEK_API_KEY;
+```
+
+### Redact in Logs
+
+```typescript
+function safeLog(apiKey: string) {
+  const redacted = apiKey 
+    ? `${apiKey.slice(0, 7)}***${apiKey.slice(-4)}`
+    : 'not-set';
+  console.log(`API Key: ${redacted}`);
 }
+```
+
+## Common Workflows
+
+### 1. First-Time Setup
+
+```bash
+# Clone and install
+git clone https://github.com/MageExemplify/deepseek-openclaw-648.git
+cd deepseek-openclaw-648
+npm install
+
+# Set environment variable
+export DEEPSEEK_API_KEY="sk-your-key"
+
+# Run the app
+npm start
+
+# Open browser to http://localhost:5173
+# Select model, copy generated command
+# Run command in terminal
+```
+
+### 2. Switching Models
+
+```bash
+# Update OpenClaw config
+openclaw config set agents.defaults.model.primary deepseek/deepseek-v4-pro
+
+# Verify
+openclaw config get agents.defaults.model.primary
+```
+
+### 3. Testing Integration
+
+```bash
+# Test connection
+openclaw test --provider deepseek
+
+# Run a simple query
+openclaw chat "Hello, test DeepSeek integration"
 ```
 
 ## Troubleshooting
 
-### API Key Not Recognized
+### "Provider not found" Error
 
-**Problem:** OpenClaw can't authenticate with DeepSeek.
+**Cause:** OpenClaw doesn't recognize the DeepSeek provider.
 
 **Solution:**
 ```bash
-# Verify environment variable is set
+# Ensure OpenClaw is up to date
+openclaw --version
+
+# Reinstall provider
+openclaw provider install deepseek
+
+# Verify installation
+openclaw provider list | grep deepseek
+```
+
+### "Invalid API Key" Error
+
+**Cause:** API key not set or incorrect.
+
+**Solution:**
+```bash
+# Check if variable is set
 echo $DEEPSEEK_API_KEY
 
-# Re-export if needed
-export DEEPSEEK_API_KEY=sk-your-key-here
+# Re-export correctly
+export DEEPSEEK_API_KEY="sk-your-actual-key"
 
-# Test connection
-openclaw test-connection --provider deepseek
+# Test directly
+curl https://api.deepseek.com/v1/models \
+  -H "Authorization: Bearer $DEEPSEEK_API_KEY"
 ```
 
 ### Model Not Available
 
-**Problem:** Selected model returns 404 or unsupported error.
+**Cause:** Selected model ID doesn't match DeepSeek's current offerings.
+
+**Solution:**
+- Check [DeepSeek API docs](https://api-docs.deepseek.com) for current model names
+- Update `models.ts` with correct IDs
+- Use `deepseek/deepseek-chat` as fallback
+
+### Build Errors
+
+**Cause:** Missing dependencies or TypeScript issues.
 
 **Solution:**
 ```bash
-# List currently available models
-openclaw models list --provider deepseek
-
-# Update to available model
-openclaw config set agents.defaults.model.primary deepseek/deepseek-chat
-```
-
-### Build Fails with Vite Errors
-
-**Problem:** `npm run build` fails with module resolution errors.
-
-**Solution:**
-```bash
-# Clear node_modules and lock file
+# Clean install
 rm -rf node_modules package-lock.json
-
-# Reinstall dependencies
 npm install
 
-# Clear Vite cache
-rm -rf node_modules/.vite
+# Check TypeScript
+npm run typecheck
 
 # Rebuild
 npm run build
 ```
 
-### Security Software Blocks Installation
+## Advanced Configuration
 
-**Problem:** Windows Defender or antivirus blocks installation.
+### Custom Agent Profiles
 
-**Solution:**
-- Add project folder to allowed list
-- Temporarily pause protection during install
-- Only download from official GitHub repository: `https://github.com/MageExemplify/deepseek-openclaw-648`
-
-### TypeScript Type Errors
-
-**Problem:** TypeScript compilation errors in development.
-
-**Solution:**
-```bash
-# Check TypeScript configuration
-cat tsconfig.json
-
-# Verify types are installed
-npm install --save-dev @types/react @types/react-dom
-
-# Run type check
-npx tsc --noEmit
-```
-
-## Common Workflows
-
-### Add New Model to Catalog
-
-```typescript
-// src/models.ts
-export const deepseekModels: DeepSeekModel[] = [
-  // ... existing models
-  {
-    id: "deepseek/deepseek-v5-turbo",
-    name: "DeepSeek V5 Turbo",
-    description: "Next-generation turbo model",
-    useCase: "Ultra-fast responses with improved accuracy",
-    recommended: false
-  }
-];
-```
-
-### Create Custom Config Generator
-
-```typescript
-// src/customConfig.ts
-import { OpenClawConfig } from './types';
-
-export function generateProductionConfig(
-  model: string,
-  channels: string[]
-): OpenClawConfig {
-  return {
-    env: {
-      DEEPSEEK_API_KEY: "${DEEPSEEK_API_KEY}"
+```json
+{
+  "agents": {
+    "quick-assistant": {
+      "model": {
+        "primary": "deepseek/deepseek-v4-flash"
+      },
+      "temperature": 0.7,
+      "maxTokens": 2000
     },
-    agents: {
-      production: {
-        model: {
-          primary: model,
-          fallback: "deepseek/deepseek-chat"
-        },
-        channels: channels.reduce((acc, channel) => ({
-          ...acc,
-          [channel]: { enabled: true }
-        }), {})
+    "deep-thinker": {
+      "model": {
+        "primary": "deepseek/deepseek-reasoner"
+      },
+      "temperature": 0.3,
+      "maxTokens": 8000,
+      "reasoning": {
+        "enabled": true,
+        "maxSteps": 10
       }
     }
-  };
+  }
 }
 ```
 
-### Add Copy-to-Clipboard Utility
+### Rate Limiting
 
-```typescript
-// src/utils.ts
-export async function copyToClipboard(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (err) {
-    console.error('Failed to copy:', err);
-    return false;
+```json
+{
+  "providers": {
+    "deepseek": {
+      "rateLimit": {
+        "requests": 100,
+        "period": "1m"
+      },
+      "retry": {
+        "attempts": 3,
+        "backoff": "exponential"
+      }
+    }
   }
 }
-
-// Usage in component
-import { copyToClipboard } from './utils';
-
-const handleCopy = async () => {
-  const success = await copyToClipboard(command);
-  if (success) {
-    alert('Copied to clipboard!');
-  }
-};
 ```
 
 ## References
 
-- **OpenClaw Documentation:** https://docs.openclaw.ai/
-- **OpenClaw DeepSeek Provider:** https://docs.openclaw.ai/providers/deepseek
-- **DeepSeek API Documentation:** https://api-docs.deepseek.com/
-- **DeepSeek OpenClaw Integration:** https://api-docs.deepseek.com/quick_start/agent_integrations/openclaw
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [OpenClaw DeepSeek Provider](https://docs.openclaw.ai/providers/deepseek)
+- [DeepSeek API Docs](https://api-docs.deepseek.com/)
+- [DeepSeek OpenClaw Integration](https://api-docs.deepseek.com/quick_start/agent_integrations/openclaw)
+
+## Contributing
+
+The project uses:
+- **Vite** for bundling
+- **React 18** for UI
+- **TypeScript** for type safety
+- **GitHub Actions** for CI/CD
+
+To contribute:
+```bash
+# Fork and clone
+git clone https://github.com/YOUR_USERNAME/deepseek-openclaw-648.git
+
+# Create feature branch
+git checkout -b feature/my-improvement
+
+# Make changes, test locally
+npm run dev
+
+# Submit PR
+```
+
+---
+
+**License:** MIT
