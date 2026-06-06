@@ -1,224 +1,204 @@
 ---
 name: openclaw-windows-companion
-description: Windows companion suite for OpenClaw AI assistant - system tray app, shared library, CLI tools, and node capabilities
+description: Windows companion suite for OpenClaw AI assistant - system tray app, node capabilities, WebSocket gateway client, and CLI tools
 triggers:
-  - "set up OpenClaw Windows companion"
-  - "build OpenClaw tray app"
-  - "configure OpenClaw node mode"
-  - "use OpenClaw CLI validator"
-  - "implement OpenClaw WebSocket client"
-  - "troubleshoot OpenClaw Windows pairing"
-  - "create OpenClaw canvas commands"
-  - "handle OpenClaw notifications"
+  - build and run the OpenClaw Windows tray app
+  - connect to OpenClaw gateway from Windows
+  - set up OpenClaw node mode on Windows
+  - use OpenClaw CLI to test WebSocket connection
+  - configure OpenClaw Windows companion settings
+  - enable camera and screen capture for OpenClaw agent
+  - troubleshoot OpenClaw Windows connection issues
+  - create OpenClaw Windows installer package
 ---
 
 # OpenClaw Windows Companion
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-The OpenClaw Windows Hub is a native Windows companion suite for [OpenClaw](https://openclaw.ai) - an AI-powered personal assistant. It provides a WinUI 3 system tray application (Molty), shared gateway client libraries, and CLI utilities for WebSocket connectivity validation.
+The OpenClaw Windows Companion is a native C# suite that connects Windows PCs to the OpenClaw AI assistant. It includes a WinUI 3 system tray app (Molty), shared gateway client library, and CLI tools for WebSocket validation.
 
-## What It Does
+**Key capabilities:**
+- System tray app with quick send (Ctrl+Alt+Shift+C)
+- Node mode: turn your Windows PC into a controllable agent node
+- WebView2-based chat and canvas windows
+- Screen capture, camera access, speech-to-text, text-to-speech
+- Real-time gateway status, sessions, channels, usage tracking
+- Toast notifications with smart categorization
+- Auto-updates from GitHub releases
 
-- **System Tray App (Molty)**: Modern Windows 11-style tray companion with live gateway status, session management, channel control, usage tracking, and Quick Send hotkey (Ctrl+Alt+Shift+C)
-- **Node Mode**: Turns your Windows PC into an OpenClaw node that the agent can control (notifications, command execution, screen capture, camera, canvas WebView2, TTS, location, device info)
-- **WebSocket Client**: Shared library (`OpenClaw.Shared`) for gateway connectivity
-- **CLI Validator**: `OpenClaw.Cli` for testing WebSocket connect/send/probe operations
+## Architecture
 
-## Installation
-
-### End Users
-
-Download the installer for your architecture:
-- x64: [OpenClawCompanion-Setup-x64.exe](https://github.com/openclaw/openclaw/releases/latest/download/OpenClawCompanion-Setup-x64.exe)
-- ARM64: [OpenClawCompanion-Setup-arm64.exe](https://github.com/openclaw/openclaw/releases/latest/download/OpenClawCompanion-Setup-arm64.exe)
-
-### Developers
-
-**Prerequisites:**
-- Windows 10 (20H2+) or Windows 11
-- .NET 10.0 SDK: https://dotnet.microsoft.com/download/dotnet/10.0
-- Windows 10 SDK (for WinUI)
-- WebView2 Runtime (pre-installed on modern Windows)
-
-**Build:**
-
-```powershell
-# Clone repository
-git clone https://github.com/openclaw/openclaw-windows-node.git
-cd openclaw-windows-node
-
-# Check prerequisites
-.\build.ps1 -CheckOnly
-
-# Build all projects
-.\build.ps1
-
-# Build specific project
-.\build.ps1 -Project WinUI
+```
+openclaw-windows-node/
+├── src/
+│   ├── OpenClaw.Tray.WinUI/      # System tray app (WinUI 3)
+│   ├── OpenClaw.Shared/          # Gateway client library
+│   └── OpenClaw.Cli/             # WebSocket validator CLI
+├── build.ps1                     # Build script with prereq checks
+└── run-app-local.ps1            # Launch tray app for development
 ```
 
-**Run locally:**
+## Prerequisites
 
 ```powershell
-# Build and launch tray app
+# Check prerequisites
+.\build.ps1 -CheckOnly
+```
+
+**Required:**
+- Windows 10 (20H2+) or Windows 11
+- .NET 10.0 SDK
+- Windows 10 SDK (for WinUI build)
+- WebView2 Runtime (pre-installed on modern Windows)
+
+## Building
+
+### Build all projects
+
+```powershell
+# Recommended: use build script
+.\build.ps1
+
+# Or build specific project
+.\build.ps1 -Project WinUI
+.\build.ps1 -Project Shared
+.\build.ps1 -Project Cli
+```
+
+### Build with dotnet directly
+
+```powershell
+# Build for ARM64
+dotnet build src/OpenClaw.Tray.WinUI/OpenClaw.Tray.WinUI.csproj -r win-arm64
+
+# Build for x64
+dotnet build src/OpenClaw.Tray.WinUI/OpenClaw.Tray.WinUI.csproj -r win-x64
+
+# Build MSIX package (for camera/mic consent)
+dotnet build src/OpenClaw.Tray.WinUI -r win-arm64 -p:PackageMsix=true
+dotnet build src/OpenClaw.Tray.WinUI -r win-x64 -p:PackageMsix=true
+```
+
+## Running the Tray App
+
+```powershell
+# Build and launch (Debug)
 .\run-app-local.ps1
 
-# Skip rebuild, launch existing Debug build
+# Skip rebuild if already built
 .\run-app-local.ps1 -NoBuild
 
-# Isolated mode (separate settings for multiple worktrees)
+# Run isolated (separate settings)
 .\run-app-local.ps1 -Isolated
 
 # Test alpha updates from Release build
 .\run-app-local.ps1 -Configuration Release -Isolated -UpdateChannel alpha
+
+# Launch through WinAppCLI (manifest validation)
+.\run-app-local.ps1 -UseWinApp -NoBuild
 ```
 
-## Key Components
+## Configuration
 
-### 1. Tray Application (OpenClaw.Tray.WinUI)
+Settings are stored in `%APPDATA%\OpenClawTray\settings.json`:
 
-WinUI 3 system tray app with flyout menu, Command Center diagnostics, embedded WebView2 chat, and toast notifications.
-
-**Build WinUI project:**
-
-```powershell
-# ARM64
-dotnet build src/OpenClaw.Tray.WinUI/OpenClaw.Tray.WinUI.csproj -r win-arm64
-
-# x64
-dotnet build src/OpenClaw.Tray.WinUI/OpenClaw.Tray.WinUI.csproj -r win-x64
-
-# With MSIX packaging (for camera/mic consent prompts)
-dotnet build src/OpenClaw.Tray.WinUI -r win-arm64 -p:PackageMsix=true
+```json
+{
+  "GatewayUrl": "ws://127.0.0.1:18789",
+  "AuthToken": "your-gateway-token",
+  "AutoStart": true,
+  "NotificationsEnabled": true,
+  "NodeMode": {
+    "Enabled": true,
+    "DeviceId": "auto-generated-uuid"
+  },
+  "UpdateChannel": "stable"
+}
 ```
 
-**Settings location:**
-```
-%APPDATA%\OpenClawTray\settings.json
-```
-
-**Deep link scheme:**
-```
-openclaw://action?param=value
-```
-
-### 2. Shared Library (OpenClaw.Shared)
-
-Gateway client library for WebSocket connectivity.
-
-**Add to your project:**
-
-```xml
-<ProjectReference Include="..\OpenClaw.Shared\OpenClaw.Shared.csproj" />
-```
-
-**Usage example:**
+### Gateway Connection
 
 ```csharp
 using OpenClaw.Shared;
-using OpenClaw.Shared.Models;
 
-// Initialize gateway client
-var settings = new GatewaySettings
-{
-    Url = "ws://127.0.0.1:18789",
-    Token = Environment.GetEnvironmentVariable("OPENCLAW_TOKEN")
-};
+// Read settings
+var settings = SettingsManager.Load();
 
-var client = new GatewayClient(settings);
+// Create gateway client
+var client = new GatewayClient(settings.GatewayUrl, settings.AuthToken);
 
 // Connect
 await client.ConnectAsync();
 
-// Send chat message
-var response = await client.SendChatAsync(new ChatSendRequest
-{
-    Message = "Hello from Windows!",
-    SessionId = "test-session"
-});
+// Send chat message (requires operator.write scope)
+await client.SendChatMessageAsync("Hello from Windows!");
 
-// Listen for events
-client.OnSessionEvent += (sender, evt) =>
-{
-    Console.WriteLine($"Session event: {evt.Type} - {evt.Message}");
+// Subscribe to events
+client.OnSessionUpdate += (sender, session) => {
+    Console.WriteLine($"Session {session.Id}: {session.Status}");
 };
 
-client.OnUsageEvent += (sender, evt) =>
-{
-    Console.WriteLine($"Usage: {evt.Provider} - ${evt.Cost}");
+client.OnUsageUpdate += (sender, usage) => {
+    Console.WriteLine($"Usage: ${usage.TotalCost:F4}");
 };
-
-// Disconnect
-await client.DisconnectAsync();
 ```
 
-**Gateway API methods:**
+## CLI WebSocket Validator
 
-```csharp
-// Chat
-await client.SendChatAsync(new ChatSendRequest { Message = "test" });
-
-// Sessions
-var sessions = await client.GetSessionsAsync();
-
-// Usage
-var usage = await client.GetUsageAsync();
-
-// Nodes
-var nodes = await client.GetNodesAsync();
-
-// Channels
-await client.StartChannelAsync("telegram");
-await client.StopChannelAsync("telegram");
-
-// Pairing
-var pairings = await client.GetPairingsAsync();
-await client.ApprovePairingAsync(pairingId);
-```
-
-### 3. CLI Validator (OpenClaw.Cli)
-
-Command-line tool for testing gateway connectivity.
-
-**Basic usage:**
+Test gateway connectivity and `chat.send` without the tray UI:
 
 ```powershell
 # Show help
 dotnet run --project src/OpenClaw.Cli -- --help
 
-# Send message using tray settings
+# Use tray settings and send one message
 dotnet run --project src/OpenClaw.Cli -- --message "test message"
 
-# Loop with probes
-dotnet run --project src/OpenClaw.Cli -- --repeat 5 --delay-ms 1000 --probe-read --verbose
+# Loop sends with API probes
+dotnet run --project src/OpenClaw.Cli -- `
+  --repeat 5 `
+  --delay-ms 1000 `
+  --probe-read `
+  --verbose
 
-# Override URL/token
+# Override gateway URL/token
 dotnet run --project src/OpenClaw.Cli -- `
   --url ws://127.0.0.1:18789 `
   --token $env:OPENCLAW_TOKEN `
-  --message "custom gateway test"
+  --message "override test"
 ```
 
-**CLI arguments:**
+### CLI Options
 
-| Argument | Description |
-|----------|-------------|
-| `--url <ws-url>` | Gateway WebSocket URL (overrides settings.json) |
-| `--token <token>` | Gateway auth token (overrides settings.json) |
-| `--message <text>` | Message to send via chat.send |
-| `--repeat <n>` | Number of times to send message |
-| `--delay-ms <ms>` | Delay between sends (default: 1000ms) |
-| `--probe-read` | Also probe sessions/usage/nodes APIs |
-| `--verbose` | Detailed logging |
+```
+--url <url>           Gateway WebSocket URL (default: from settings.json)
+--token <token>       Auth token (default: from settings.json)
+--message <text>      Message to send via chat.send
+--repeat <count>      Number of times to send (default: 1)
+--delay-ms <ms>       Delay between sends (default: 0)
+--probe-read          Also call sessions/usage/nodes APIs
+--verbose             Detailed logging
+```
 
-## Node Mode Configuration
+## Node Mode Setup
 
-### Enable Node Capabilities
+Enable Node Mode to let the OpenClaw agent control your Windows PC:
 
-1. **In Tray Settings**: Enable "Node Mode" (enabled by default)
+### 1. Enable in Settings
 
-2. **Approve Device on Gateway**:
+```csharp
+// Enable node mode programmatically
+var settings = SettingsManager.Load();
+settings.NodeMode.Enabled = true;
+SettingsManager.Save(settings);
+```
+
+Or toggle in the tray app Settings page.
+
+### 2. Approve Device on Gateway
+
+First connection creates a pairing request:
 
 ```bash
 # List devices
@@ -228,7 +208,9 @@ openclaw devices list
 openclaw devices approve <device-id>
 ```
 
-3. **Configure Allowed Commands** in `~/.openclaw/openclaw.json`:
+### 3. Configure Gateway Allowlist
+
+Edit `~/.openclaw/openclaw.json` on your gateway:
 
 ```json
 {
@@ -265,538 +247,303 @@ openclaw devices approve <device-id>
 }
 ```
 
-### Node Capabilities Reference
+## Node Capabilities
 
-#### System Commands
+### System Commands
 
 ```csharp
 // Show Windows toast notification
-await nodeClient.SendCommandAsync("system.notify", new
-{
-    title = "Hello",
-    message = "Notification from agent",
-    tag = "demo"
+await nodeHandler.HandleSystemNotifyAsync(new {
+    title = "OpenClaw",
+    message = "Task completed!",
+    sound = "default"
 });
 
-// Execute command with approval policy
-await nodeClient.SendCommandAsync("system.run", new
-{
-    command = "git status",
-    cwd = "C:\\Projects\\myapp",
-    requestId = Guid.NewGuid().ToString()
+// Execute command (subject to exec approval policy)
+await nodeHandler.HandleSystemRunAsync(new {
+    command = "powershell",
+    args = new[] { "-Command", "Get-Date" },
+    timeout = 5000
 });
 
-// Prepare command for approval
-await nodeClient.SendCommandAsync("system.run.prepare", new
-{
-    command = "npm install",
-    cwd = "C:\\Projects\\myapp"
-});
-
-// Get execution approvals
-var approvals = await nodeClient.SendCommandAsync("system.execApprovals.get", new { });
-
-// Update approval policy
-await nodeClient.SendCommandAsync("system.execApprovals.set", new
-{
-    approvals = new[]
-    {
-        new { pattern = "git.*", policy = "allow" },
-        new { pattern = "rm -rf.*", policy = "deny" }
-    }
+// Check if command is in PATH
+var whichResult = await nodeHandler.HandleSystemWhichAsync(new {
+    command = "git"
 });
 ```
 
-#### Canvas (WebView2 Window)
+### Canvas Control
 
 ```csharp
-// Present canvas window
-await nodeClient.SendCommandAsync("canvas.present", new
-{
+// Present WebView2 canvas window
+await nodeHandler.HandleCanvasPresentAsync(new {
     url = "https://example.com",
-    title = "Demo Canvas",
-    width = 800,
-    height = 600
+    width = 1200,
+    height = 800
 });
 
 // Navigate to new URL
-await nodeClient.SendCommandAsync("canvas.navigate", new
-{
+await nodeHandler.HandleCanvasNavigateAsync(new {
     url = "https://openclaw.ai"
 });
 
 // Execute JavaScript
-await nodeClient.SendCommandAsync("canvas.eval", new
-{
-    script = "document.querySelector('h1').textContent = 'Updated by agent';"
+await nodeHandler.HandleCanvasEvalAsync(new {
+    script = "document.title"
 });
 
 // Take screenshot
-var snapshot = await nodeClient.SendCommandAsync("canvas.snapshot", new { });
-
-// Push A2UI content
-await nodeClient.SendCommandAsync("canvas.a2ui.push", new
-{
-    content = "<h1>Hello from agent</h1>"
+var snapshot = await nodeHandler.HandleCanvasSnapshotAsync(new {
+    format = "png"
 });
-
-// Hide canvas
-await nodeClient.SendCommandAsync("canvas.hide", new { });
 ```
 
-#### Screen Capture
+### Screen Capture
 
 ```csharp
-// Take screenshot
-var screenshot = await nodeClient.SendCommandAsync("screen.snapshot", new
-{
-    format = "png", // or "jpeg"
-    quality = 90
+// Capture screenshot
+var screenshot = await nodeHandler.HandleScreenSnapshotAsync(new {
+    display = 0,  // Primary display
+    format = "png"
 });
-// Returns base64-encoded image
 
 // Record screen (fixed duration)
-var recording = await nodeClient.SendCommandAsync("screen.record", new
-{
-    duration = 5.0, // seconds
-    fps = 30
+var recording = await nodeHandler.HandleScreenRecordAsync(new {
+    display = 0,
+    duration = 10000,  // 10 seconds
+    format = "mp4"
 });
-// Returns base64-encoded MP4
 ```
 
-#### Camera
+### Camera Access
 
 ```csharp
 // List cameras
-var cameras = await nodeClient.SendCommandAsync("camera.list", new { });
+var cameras = await nodeHandler.HandleCameraListAsync();
 
-// Take photo
-var photo = await nodeClient.SendCommandAsync("camera.snap", new
-{
-    deviceId = "\\\\?\\USB#VID_046D...", // from camera.list
-    format = "jpeg",
-    quality = 85
+// Capture photo
+var photo = await nodeHandler.HandleCameraSnapAsync(new {
+    device = 0,  // First camera
+    format = "jpeg"
 });
-// Returns base64-encoded image
 
-// Record video clip
-var clip = await nodeClient.SendCommandAsync("camera.clip", new
-{
-    deviceId = "\\\\?\\USB#VID_046D...",
-    duration = 3.0 // seconds
-});
-// Returns base64-encoded MP4
-```
-
-#### Speech-to-Text
-
-```csharp
-// Transcribe from microphone (requires opt-in in Settings)
-var transcription = await nodeClient.SendCommandAsync("stt.transcribe", new
-{
-    duration = 5.0, // seconds
-    language = "en-US" // optional
-});
-// Returns { text: "transcribed speech..." }
-```
-
-#### Location
-
-```csharp
-// Get Windows geolocation
-var location = await nodeClient.SendCommandAsync("location.get", new { });
-// Returns { latitude: 47.6062, longitude: -122.3321, accuracy: 20 }
-```
-
-#### Device Info
-
-```csharp
-// Get device metadata
-var info = await nodeClient.SendCommandAsync("device.info", new { });
-// Returns { hostname, os, version, arch, ... }
-
-// Get device status
-var status = await nodeClient.SendCommandAsync("device.status", new { });
-// Returns { cpuUsage, memoryUsage, ... }
-```
-
-#### Text-to-Speech
-
-```csharp
-// Speak text (Windows SAPI or ElevenLabs)
-await nodeClient.SendCommandAsync("tts.speak", new
-{
-    text = "Hello from the agent!",
-    voice = "default", // or ElevenLabs voice ID
-    rate = 1.0,
-    volume = 0.8
+// Capture video clip
+var clip = await nodeHandler.HandleCameraClipAsync(new {
+    device = 0,
+    duration = 5000,  // 5 seconds
+    format = "mp4"
 });
 ```
 
-## Configuration
+### Speech-to-Text
 
-### Settings Structure
-
-`%APPDATA%\OpenClawTray\settings.json`:
-
-```json
-{
-  "gatewayUrl": "ws://127.0.0.1:18789",
-  "gatewayToken": "your-operator-token",
-  "autoStart": true,
-  "notificationsEnabled": true,
-  "nodeModeEnabled": true,
-  "quickSendHotkey": "Ctrl+Alt+Shift+C",
-  "updateChannel": "stable",
-  "theme": "system",
-  "sttEnabled": false,
-  "elevenLabsApiKey": "",
-  "elevenLabsVoiceId": ""
-}
+```csharp
+// Transcribe from microphone (opt-in via Settings)
+var transcription = await nodeHandler.HandleSttTranscribeAsync(new {
+    duration = 10000,  // 10 seconds
+    language = "en-US"
+});
 ```
 
-### Environment Variables
+### Text-to-Speech
 
-```powershell
-# Override gateway URL
-$env:OPENCLAW_GATEWAY_URL = "ws://custom-host:18789"
+```csharp
+// Speak via Windows TTS
+await nodeHandler.HandleTtsSpeakAsync(new {
+    text = "Hello from OpenClaw!",
+    voice = "Microsoft David Desktop"
+});
 
-# Override auth token
-$env:OPENCLAW_TOKEN = "your-token-here"
-
-# Enable debug logging
-$env:OPENCLAW_DEBUG = "1"
+// Or use ElevenLabs (if configured)
+await nodeHandler.HandleTtsSpeakAsync(new {
+    text = "Hello from OpenClaw!",
+    provider = "elevenlabs",
+    voice = "21m00Tcm4TlvDq8ikWAM"
+});
 ```
 
-## Common Patterns
+## Shared Library Usage
 
-### Custom Gateway Client Integration
+The `OpenClaw.Shared` library provides the gateway client and models:
 
 ```csharp
 using OpenClaw.Shared;
 using OpenClaw.Shared.Models;
 
-public class MyService
-{
-    private readonly GatewayClient _client;
+// Initialize client
+var client = new GatewayClient(
+    "ws://127.0.0.1:18789",
+    "your-auth-token"
+);
 
-    public MyService()
-    {
-        var settings = new GatewaySettings
-        {
-            Url = Environment.GetEnvironmentVariable("OPENCLAW_GATEWAY_URL"),
-            Token = Environment.GetEnvironmentVariable("OPENCLAW_TOKEN"),
-            ReconnectDelay = TimeSpan.FromSeconds(5),
-            MaxReconnectAttempts = 10
-        };
+// Event subscriptions
+client.OnConnected += async (sender, args) => {
+    Console.WriteLine("Connected to gateway");
+    await client.SubscribeToSessionsAsync();
+    await client.SubscribeToUsageAsync();
+};
 
-        _client = new GatewayClient(settings);
-        
-        // Event handlers
-        _client.OnConnected += HandleConnected;
-        _client.OnDisconnected += HandleDisconnected;
-        _client.OnSessionEvent += HandleSessionEvent;
-        _client.OnUsageEvent += HandleUsageEvent;
-        _client.OnNodeEvent += HandleNodeEvent;
-        _client.OnNotification += HandleNotification;
-    }
+client.OnDisconnected += (sender, reason) => {
+    Console.WriteLine($"Disconnected: {reason}");
+};
 
-    public async Task StartAsync()
-    {
-        await _client.ConnectAsync();
-    }
+client.OnSessionUpdate += (sender, session) => {
+    Console.WriteLine($"Session {session.Id} status: {session.Status}");
+};
 
-    private void HandleConnected(object sender, EventArgs e)
-    {
-        Console.WriteLine("Gateway connected!");
-    }
+client.OnUsageUpdate += (sender, usage) => {
+    Console.WriteLine($"Total cost: ${usage.TotalCost:F4}");
+};
 
-    private void HandleSessionEvent(object sender, SessionEvent evt)
-    {
-        Console.WriteLine($"Session {evt.SessionId}: {evt.Message}");
-    }
+// Connect
+await client.ConnectAsync();
 
-    private void HandleNotification(object sender, NotificationEvent evt)
-    {
-        // Show UI notification
-        ShowToast(evt.Title, evt.Message);
-    }
+// Send message
+var result = await client.SendChatMessageAsync("What's the weather?");
 
-    public async Task SendMessageAsync(string message)
-    {
-        var response = await _client.SendChatAsync(new ChatSendRequest
-        {
-            Message = message,
-            SessionId = Guid.NewGuid().ToString()
-        });
-        
-        Console.WriteLine($"Response: {response.Message}");
-    }
+// Get sessions
+var sessions = await client.GetSessionsAsync();
+foreach (var session in sessions) {
+    Console.WriteLine($"{session.Id}: {session.Status}");
 }
+
+// Get usage
+var usage = await client.GetUsageAsync();
+Console.WriteLine($"Providers: {string.Join(", ", usage.Providers.Keys)}");
 ```
 
-### Implementing Node Command Handlers
+## Quick Send Scope Requirements
 
-```csharp
-using OpenClaw.Shared.Node;
+Quick Send uses `chat.send` and requires `operator.write` scope.
 
-public class CustomNodeHandler : INodeCommandHandler
-{
-    public async Task<NodeCommandResponse> HandleAsync(NodeCommand command)
-    {
-        return command.Method switch
-        {
-            "system.notify" => await HandleNotifyAsync(command),
-            "screen.snapshot" => await HandleScreenshotAsync(command),
-            "canvas.present" => await HandleCanvasPresentAsync(command),
-            _ => new NodeCommandResponse
-            {
-                Success = false,
-                Error = $"Unknown command: {command.Method}"
-            }
-        };
-    }
+If you get `missing scope: operator.write`:
 
-    private async Task<NodeCommandResponse> HandleNotifyAsync(NodeCommand cmd)
-    {
-        var title = cmd.Params["title"]?.ToString();
-        var message = cmd.Params["message"]?.ToString();
-        
-        // Show Windows toast
-        await ShowToastNotificationAsync(title, message);
-        
-        return new NodeCommandResponse { Success = true };
-    }
+1. The error response includes your `client.id` and operator device ID
+2. Update your gateway token to include `operator.write` scope
+3. Reconnect and retry
 
-    private async Task<NodeCommandResponse> HandleScreenshotAsync(NodeCommand cmd)
-    {
-        var format = cmd.Params["format"]?.ToString() ?? "png";
-        var quality = cmd.Params["quality"]?.ToObject<int>() ?? 90;
-        
-        var imageBytes = await CaptureScreenAsync(format, quality);
-        var base64 = Convert.ToBase64String(imageBytes);
-        
-        return new NodeCommandResponse
-        {
-            Success = true,
-            Data = new { image = base64, format }
-        };
-    }
-}
-```
+If you get `pairing required` / `NOT_PAIRED`:
 
-### Quick Send Implementation
-
-```csharp
-using OpenClaw.Shared;
-using System.Windows.Input;
-
-public class QuickSendService
-{
-    private readonly GatewayClient _client;
-    private readonly GlobalHotkey _hotkey;
-
-    public QuickSendService(GatewayClient client)
-    {
-        _client = client;
-        
-        // Register Ctrl+Alt+Shift+C
-        _hotkey = new GlobalHotkey(
-            ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift,
-            Key.C
-        );
-        
-        _hotkey.Pressed += OnHotkeyPressed;
-    }
-
-    private async void OnHotkeyPressed(object sender, EventArgs e)
-    {
-        // Show input dialog
-        var message = await ShowQuickSendDialogAsync();
-        if (string.IsNullOrWhiteSpace(message)) return;
-
-        try
-        {
-            var response = await _client.SendChatAsync(new ChatSendRequest
-            {
-                Message = message,
-                SessionId = Guid.NewGuid().ToString()
-            });
-
-            ShowToast("Quick Send", "Message sent successfully!");
-        }
-        catch (Exception ex)
-        {
-            if (ex.Message.Contains("missing scope: operator.write"))
-            {
-                // Copy remediation to clipboard
-                var remediation = GenerateRemediationGuidance();
-                Clipboard.SetText(remediation);
-                ShowToast("Scope Error", "Token needs operator.write scope. Details copied to clipboard.");
-            }
-            else if (ex.Message.Contains("NOT_PAIRED"))
-            {
-                ShowToast("Pairing Required", "Approve this device on the gateway first.");
-            }
-            else
-            {
-                ShowToast("Error", ex.Message);
-            }
-        }
-    }
-}
-```
+1. Approve the device in gateway pairing approvals
+2. Reconnect and retry
 
 ## Troubleshooting
 
 ### Connection Issues
 
-**Problem**: Tray app shows "Disconnected" status
-
-**Solutions**:
 ```powershell
-# 1. Verify gateway is running
-openclaw gateway status
-
-# 2. Test WebSocket connectivity with CLI
-dotnet run --project src/OpenClaw.Cli -- --verbose
-
-# 3. Check settings.json
-notepad %APPDATA%\OpenClawTray\settings.json
-
-# 4. Verify token has required scopes
-# Token should include: operator.read, operator.write (for Quick Send)
-
-# 5. Check logs
-notepad %APPDATA%\OpenClawTray\logs\app.log
+# Test WebSocket connection with CLI
+dotnet run --project src/OpenClaw.Cli -- `
+  --url ws://127.0.0.1:18789 `
+  --token $env:OPENCLAW_TOKEN `
+  --verbose
 ```
 
-### Pairing Issues
-
-**Problem**: Node commands fail with "NOT_PAIRED" or "PAIRING_PENDING"
-
-**Solutions**:
+Check gateway logs:
 ```bash
-# List pending pairings
-openclaw devices list --pending
+tail -f ~/.openclaw/logs/gateway.log
+```
 
-# Approve device
-openclaw devices approve <device-id>
+### Node Pairing
 
-# Verify approval
+```bash
+# List pairing requests
 openclaw devices list
+
+# Check device status
+openclaw devices status <device-id>
+
+# Re-approve if needed
+openclaw devices approve <device-id>
 ```
 
-### Quick Send Scope Error
+### Camera/Microphone Permissions
 
-**Problem**: Quick Send fails with "missing scope: operator.write"
+MSIX packages declare capabilities, but Windows may still prompt for consent. If capabilities fail:
 
-**Solutions**:
-1. Check token scopes in gateway config
-2. Regenerate operator token with `operator.write` scope
-3. Update `gatewayToken` in settings.json
-4. Restart tray app
-
-**Generate new token**:
-```bash
-# In gateway config or admin UI, ensure operator token includes:
-{
-  "scopes": ["operator.read", "operator.write"]
-}
-```
-
-### Node Commands Not Working
-
-**Problem**: Agent can't control Windows node
-
-**Checklist**:
-```json
-// 1. Verify gateway.nodes.allowCommands in ~/.openclaw/openclaw.json
-{
-  "gateway": {
-    "nodes": {
-      "allowCommands": ["system.notify", "canvas.present", ...]
-    }
-  }
-}
-
-// 2. Confirm device is approved
-// openclaw devices list
-
-// 3. Check Node Mode is enabled in tray Settings
-
-// 4. Review node logs
-// %APPDATA%\OpenClawTray\logs\node.log
-```
+1. Check Windows Settings → Privacy & security → Camera/Microphone
+2. Ensure OpenClaw is allowed
+3. Rebuild with MSIX package: `dotnet build -p:PackageMsix=true`
 
 ### Build Errors
 
-**Problem**: WinUI build fails
-
-**Solutions**:
 ```powershell
-# 1. Install Windows SDK
-winget install Microsoft.WindowsSDK.10.0.22621
-
-# 2. Ensure .NET 10 SDK is installed
-dotnet --version
-
-# 3. Clean and rebuild
+# Clean and rebuild
 dotnet clean
-dotnet build -r win-x64
+.\build.ps1
 
-# 4. For MSIX packaging issues, install WinAppSDK
-dotnet workload install microsoft-net-sdk-windowsdesktop
+# Check prerequisites
+.\build.ps1 -CheckOnly
+
+# Verify Windows SDK
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows Kits\Installed Roots"
 ```
 
 ### WebView2 Issues
 
-**Problem**: Embedded chat or canvas won't load
-
-**Solutions**:
 ```powershell
-# 1. Install/update WebView2 Runtime
-# Download from: https://developer.microsoft.com/microsoft-edge/webview2
-
-# 2. Check WebView2 version
+# Check WebView2 runtime
 Get-AppxPackage -Name Microsoft.WebView2
 
-# 3. Clear WebView2 cache
-Remove-Item -Recurse "$env:LOCALAPPDATA\OpenClawTray\WebView2" -Force
+# Install if missing
+winget install Microsoft.Edge.WebView2Runtime
 ```
 
-### Update Failures
+## Creating Installers
 
-**Problem**: Auto-update fails or hangs
-
-**Solutions**:
-```powershell
-# 1. Check update channel in settings
-notepad %APPDATA%\OpenClawTray\settings.json
-# "updateChannel": "stable" or "alpha"
-
-# 2. Manually download installer
-# https://github.com/openclaw/openclaw/releases/latest
-
-# 3. Force update check from tray menu
-# Right-click tray icon → Settings → Check for Updates
-
-# 4. Review update logs
-notepad %APPDATA%\OpenClawTray\logs\update.log
-```
-
-### Permission Errors (Camera/Mic/Location)
-
-**Problem**: Node commands fail with permission denied
-
-**Solutions**:
-1. Use **packaged MSIX build** for proper capability declarations
-2. Grant permissions in Windows Settings → Privacy & Security
-3. For camera: Settings → Privacy → Camera → Allow apps to access
-4. For microphone: Settings → Privacy → Microphone → Allow apps to access
-5. For location: Settings → Privacy → Location → Allow apps to access
+Build installers for distribution:
 
 ```powershell
-# Build with MSIX packaging
-dotnet build src/OpenClaw.Tray.WinUI -r win-x64 -p:PackageMsix=true
+# Build x64 installer
+dotnet build src/OpenClaw.Tray.WinUI -r win-x64 -p:PackageMsix=true -c Release
+
+# Build ARM64 installer
+dotnet build src/OpenClaw.Tray.WinUI -r win-arm64 -p:PackageMsix=true -c Release
 ```
+
+Output: `OpenClawCompanion-Setup-{arch}.exe`
+
+## Environment Variables
+
+```powershell
+# Override gateway URL
+$env:OPENCLAW_GATEWAY_URL = "ws://custom-gateway:18789"
+
+# Override auth token
+$env:OPENCLAW_TOKEN = "your-token-here"
+
+# Run with overrides
+.\run-app-local.ps1
+```
+
+## Deep Links
+
+The app registers the `openclaw://` URL scheme:
+
+```
+openclaw://open-chat
+openclaw://quick-send
+openclaw://settings
+openclaw://command-center
+```
+
+Use from PowerShell:
+```powershell
+Start-Process "openclaw://open-chat"
+```
+
+## Auto-Start Configuration
+
+```csharp
+// Enable auto-start
+var autoStart = new AutoStartManager();
+await autoStart.EnableAsync();
+
+// Disable
+await autoStart.DisableAsync();
+
+// Check status
+bool isEnabled = await autoStart.IsEnabledAsync();
+```
+
+Registry key: `HKCU\Software\Microsoft\Windows\CurrentVersion\Run\OpenClawTray`
