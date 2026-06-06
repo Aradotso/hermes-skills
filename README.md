@@ -90,6 +90,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [deepseek-openclaw-config-generator](skills/deepseek-openclaw-config-generator/) | [install](https://skills.sh/aradotso/hermes-skills/deepseek-openclaw-config-generator) | [LawmakerTreasure/deepseek-openclaw](https://github.com/LawmakerTreasure/deepseek-openclaw) | 2026-05-31 |
 | [metamask-openclaw-wallet-integration](skills/metamask-openclaw-wallet-integration/) | [install](https://skills.sh/aradotso/hermes-skills/metamask-openclaw-wallet-integration) | [veryyoldman/metamask-openclaw](https://github.com/veryyoldman/metamask-openclaw) | 2026-05-31 |
 | [deepseek-openclaw-integration](skills/deepseek-openclaw-integration/) | [install](https://skills.sh/aradotso/hermes-skills/deepseek-openclaw-integration) | [MageExemplify/deepseek-openclaw-648](https://github.com/MageExemplify/deepseek-openclaw-648) | 2026-06-04 |
+| [hermes-dec-bytecode-reverse-engineering](skills/hermes-dec-bytecode-reverse-engineering/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-dec-bytecode-reverse-engineering) | [P1sec/hermes-dec](https://github.com/P1sec/hermes-dec) | 2026-06-06 |
 <!-- SKILL_INDEX -->
 
 ---
