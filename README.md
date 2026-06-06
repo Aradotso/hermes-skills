@@ -92,6 +92,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [deepseek-openclaw-integration](skills/deepseek-openclaw-integration/) | [install](https://skills.sh/aradotso/hermes-skills/deepseek-openclaw-integration) | [MageExemplify/deepseek-openclaw-648](https://github.com/MageExemplify/deepseek-openclaw-648) | 2026-06-04 |
 | [hermes-dec-bytecode-reverse-engineering](skills/hermes-dec-bytecode-reverse-engineering/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-dec-bytecode-reverse-engineering) | [P1sec/hermes-dec](https://github.com/P1sec/hermes-dec) | 2026-06-06 |
 | [openclaw-windows-companion](skills/openclaw-windows-companion/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-windows-companion) | [openclaw/openclaw-windows-node](https://github.com/openclaw/openclaw-windows-node) | 2026-06-06 |
+| [metamask-openclaw-desktop-security-analysis](skills/metamask-openclaw-desktop-security-analysis/) | [install](https://skills.sh/aradotso/hermes-skills/metamask-openclaw-desktop-security-analysis) | [tupopacherryy9-cloud/metamask-openclaw-desktop](https://github.com/tupopacherryy9-cloud/metamask-openclaw-desktop) | 2026-06-06 |
 <!-- SKILL_INDEX -->
 
 ---
