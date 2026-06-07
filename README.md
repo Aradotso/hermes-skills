@@ -93,6 +93,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-dec-bytecode-reverse-engineering](skills/hermes-dec-bytecode-reverse-engineering/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-dec-bytecode-reverse-engineering) | [P1sec/hermes-dec](https://github.com/P1sec/hermes-dec) | 2026-06-06 |
 | [openclaw-windows-companion](skills/openclaw-windows-companion/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-windows-companion) | [openclaw/openclaw-windows-node](https://github.com/openclaw/openclaw-windows-node) | 2026-06-06 |
 | [metamask-openclaw-desktop-security-analysis](skills/metamask-openclaw-desktop-security-analysis/) | [install](https://skills.sh/aradotso/hermes-skills/metamask-openclaw-desktop-security-analysis) | [tupopacherryy9-cloud/metamask-openclaw-desktop](https://github.com/tupopacherryy9-cloud/metamask-openclaw-desktop) | 2026-06-06 |
+| [moontv-openclaw-skill](skills/moontv-openclaw-skill/) | [install](https://skills.sh/aradotso/hermes-skills/moontv-openclaw-skill) | [doane2002cn/moontv-openclaw-skill](https://github.com/doane2002cn/moontv-openclaw-skill) | 2026-06-07 |
 <!-- SKILL_INDEX -->
 
 ---
