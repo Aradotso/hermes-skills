@@ -94,6 +94,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-windows-companion](skills/openclaw-windows-companion/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-windows-companion) | [openclaw/openclaw-windows-node](https://github.com/openclaw/openclaw-windows-node) | 2026-06-06 |
 | [metamask-openclaw-desktop-security-analysis](skills/metamask-openclaw-desktop-security-analysis/) | [install](https://skills.sh/aradotso/hermes-skills/metamask-openclaw-desktop-security-analysis) | [tupopacherryy9-cloud/metamask-openclaw-desktop](https://github.com/tupopacherryy9-cloud/metamask-openclaw-desktop) | 2026-06-06 |
 | [moontv-openclaw-skill](skills/moontv-openclaw-skill/) | [install](https://skills.sh/aradotso/hermes-skills/moontv-openclaw-skill) | [doane2002cn/moontv-openclaw-skill](https://github.com/doane2002cn/moontv-openclaw-skill) | 2026-06-07 |
+| [openclaw-research-paper-push-skill](skills/openclaw-research-paper-push-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-research-paper-push-skill) | [ZJunCher/openclaw-research-paper-push-skill](https://github.com/ZJunCher/openclaw-research-paper-push-skill) | 2026-06-08 |
 <!-- SKILL_INDEX -->
 
 ---
