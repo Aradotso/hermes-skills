@@ -96,6 +96,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [moontv-openclaw-skill](skills/moontv-openclaw-skill/) | [install](https://skills.sh/aradotso/hermes-skills/moontv-openclaw-skill) | [doane2002cn/moontv-openclaw-skill](https://github.com/doane2002cn/moontv-openclaw-skill) | 2026-06-07 |
 | [openclaw-research-paper-push-skill](skills/openclaw-research-paper-push-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-research-paper-push-skill) | [ZJunCher/openclaw-research-paper-push-skill](https://github.com/ZJunCher/openclaw-research-paper-push-skill) | 2026-06-08 |
 | [hermes-cn-desktop](skills/hermes-cn-desktop/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-cn-desktop) | [Eynzof/Hermes-CN-Desktop](https://github.com/Eynzof/Hermes-CN-Desktop) | 2026-06-09 |
+| [openclaw-dingtalk-channel](skills/openclaw-dingtalk-channel/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-dingtalk-channel) | [soimy/openclaw-channel-dingtalk](https://github.com/soimy/openclaw-channel-dingtalk) | 2026-06-10 |
 <!-- SKILL_INDEX -->
 
 ---
