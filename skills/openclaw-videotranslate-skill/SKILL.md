@@ -1,31 +1,22 @@
 ---
 name: openclaw-videotranslate-skill
-description: Translate video subtitles and auto-dub audio across languages with OpenClaw framework, featuring 3D adaptive scheduler and lossless multi-track output
+description: Translate video subtitles and generate auto-dubbing with LLM/TTS providers using OpenClaw's adaptive scheduler
 triggers:
   - translate video subtitles to another language
-  - dub video with text-to-speech translation
-  - convert video subtitles and audio to Chinese
-  - generate multi-language video tracks with TTS
-  - translate English video to Chinese with dubbing
-  - create dual audio dual subtitle video
-  - handle video translation with rate limit protection
-  - process video subtitle translation and voice synthesis
+  - add dubbed audio to video in different language
+  - convert video subtitles with TTS dubbing
+  - create multi-track video with translated audio
+  - process video translation and dubbing
+  - generate multilingual video with subtitles
+  - translate and dub video content
+  - add foreign language voiceover to video
 ---
 
 # OpenClaw Video Translation & Dubbing Skill
 
 > Skill by [ara.so](https://ara.so) — Hermes Skills collection.
 
-A professional OpenClaw skill for translating video subtitles and generating dubbed audio across multiple languages. Features a sophisticated 3D adaptive scheduler that prevents API rate limits, lossless multi-track video output, and pluggable translation/TTS providers.
-
-## What It Does
-
-This skill provides two processing modes:
-
-1. **`subtitle_only`**: Translates subtitles while keeping original audio, outputs dual-subtitle video
-2. **`subtitle_and_dubbing`**: Translates subtitles AND generates TTS voiceover with automatic duration alignment
-
-The 3D adaptive scheduler intelligently balances batch size, payload size, and concurrency to handle API rate limits (HTTP 429) gracefully with exponential backoff.
+This OpenClaw skill translates video subtitles and generates TTS-based auto-dubbing across multiple languages. It features a 3D adaptive scheduler to handle API rate limits, supports dual processing modes (subtitle-only or subtitle+dubbing), and outputs lossless multi-track videos with aligned audio.
 
 ## Installation
 
@@ -34,44 +25,46 @@ The 3D adaptive scheduler intelligently balances batch size, payload size, and c
 git clone https://github.com/zbjincheng/openclaw-skill-videotranslate.git
 cd openclaw-skill-videotranslate
 
-# Install with pip
+# Install the skill
 pip install -e .
 
-# Or with development dependencies
+# For development with testing dependencies
 pip install -e ".[dev]"
 ```
 
 **Prerequisites:**
-- Python 3.11+
-- FFmpeg in system PATH
-  - macOS: `brew install ffmpeg`
-  - Ubuntu: `sudo apt install ffmpeg`
+- Python 3.11 or 3.12
+- FFmpeg installed and available in PATH
+
+```bash
+# macOS
+brew install ffmpeg
+
+# Ubuntu/Debian
+sudo apt install ffmpeg
+```
 
 ## Configuration
 
-### Environment Setup
-
-Create a `.env` file with your API credentials:
+Create a `.env` file from the template:
 
 ```bash
 cp .env.example .env
 ```
 
-Example `.env` content:
+Key environment variables to configure:
 
 ```bash
 # Translation API credentials
-TRANSLATION_ENDPOINT=https://api.example.com/v1/chat/completions
-TRANSLATION_API_KEY=your_translation_api_key_here
+TRANSLATION_ENDPOINT=https://api.your-provider.com/v1/chat/completions
+TRANSLATION_API_KEY=your_api_key_here
 
-# TTS API credentials (for dubbing mode)
-TTS_ENDPOINT=https://api.example.com/v1/audio/speech
+# TTS API credentials (required for dubbing mode)
+TTS_ENDPOINT=https://api.your-tts-provider.com/v1/audio/speech
 TTS_API_KEY=your_tts_api_key_here
 ```
 
-### Manifest Configuration
-
-The skill uses `manifest.yaml` for configuration. Key parameters:
+The skill uses `manifest.yaml` for declarative configuration:
 
 ```yaml
 parameters:
@@ -82,23 +75,26 @@ parameters:
   
   source_language:
     type: string
+    required: true
     default: "en"
     description: "Source language code (en, zh-CN, ja, etc.)"
   
   target_language:
     type: string
+    required: true
     default: "zh-CN"
     description: "Target language code"
   
   processing_mode:
     type: enum
-    values: [subtitle_only, subtitle_and_dubbing]
-    default: subtitle_and_dubbing
+    required: true
+    default: "subtitle_and_dubbing"
+    values: ["subtitle_only", "subtitle_and_dubbing"]
   
   translation_provider:
     type: enum
-    values: [llm, web]
     required: true
+    values: ["llm", "web"]
   
   translation_endpoint:
     type: string
@@ -110,317 +106,193 @@ parameters:
   
   tts_provider:
     type: enum
-    values: [llm, web]
-    description: "Required for dubbing mode"
+    required: false
+    values: ["llm", "web"]
   
   tts_endpoint:
     type: string
-    description: "Required for dubbing mode"
+    required: false
   
   tts_credential:
     type: secret
-    description: "Required for dubbing mode"
+    required: false
 ```
 
 ## Usage Patterns
 
-### Subtitle-Only Translation
-
-Translate subtitles without dubbing, keeping original audio:
+### Basic Subtitle Translation (No Dubbing)
 
 ```python
-from translation_dubbing_skill.entry import TranslationDubbingSkill
-from translation_dubbing_skill.models import ProcessingMode
+from translation_dubbing_skill.models import ProcessingMode, SkillConfig
+from translation_dubbing_skill.entry import run_skill
 
-skill = TranslationDubbingSkill(
+config = SkillConfig(
     video_path="input_video.mp4",
     source_language="en",
     target_language="zh-CN",
     processing_mode=ProcessingMode.SUBTITLE_ONLY,
     translation_provider="llm",
-    translation_endpoint=os.getenv("TRANSLATION_ENDPOINT"),
-    translation_credential=os.getenv("TRANSLATION_API_KEY"),
+    translation_endpoint="${TRANSLATION_ENDPOINT}",
+    translation_credential="${TRANSLATION_API_KEY}",
 )
 
-# Execute translation
-result = await skill.execute()
-print(f"Output video: {result['output_video_path']}")
-print(f"Translated subtitles: {result['subtitle_path']}")
+# Run the skill
+result = run_skill(config)
+print(f"Output video: {result.output_video_path}")
+print(f"Translated subtitles: {result.subtitle_path}")
 ```
 
-### Full Translation with Dubbing
-
-Translate subtitles AND generate TTS voiceover:
+### Full Translation + Dubbing
 
 ```python
-from translation_dubbing_skill.entry import TranslationDubbingSkill
-from translation_dubbing_skill.models import ProcessingMode
+from translation_dubbing_skill.models import ProcessingMode, SkillConfig
+from translation_dubbing_skill.entry import run_skill
 
-skill = TranslationDubbingSkill(
+config = SkillConfig(
     video_path="input_video.mp4",
     source_language="en",
     target_language="zh-CN",
     processing_mode=ProcessingMode.SUBTITLE_AND_DUBBING,
     translation_provider="llm",
-    translation_endpoint=os.getenv("TRANSLATION_ENDPOINT"),
-    translation_credential=os.getenv("TRANSLATION_API_KEY"),
+    translation_endpoint="${TRANSLATION_ENDPOINT}",
+    translation_credential="${TRANSLATION_API_KEY}",
     tts_provider="llm",
-    tts_endpoint=os.getenv("TTS_ENDPOINT"),
-    tts_credential=os.getenv("TTS_API_KEY"),
+    tts_endpoint="${TTS_ENDPOINT}",
+    tts_credential="${TTS_API_KEY}",
 )
 
-# Execute translation and dubbing
-result = await skill.execute()
-print(f"Output video: {result['output_video_path']}")
-print(f"Dubbing audio: {result['dubbing_audio_path']}")
+result = run_skill(config)
+# Output: Multi-track MKV with dubbed audio + subtitles
 ```
 
-### With External Subtitle File
-
-If you have an external subtitle file:
+### Working with Subtitle Entries
 
 ```python
-skill = TranslationDubbingSkill(
-    video_path="input_video.mp4",
-    subtitle_path="subtitles.srt",  # External subtitle file
-    source_language="en",
-    target_language="ja",
-    processing_mode=ProcessingMode.SUBTITLE_AND_DUBBING,
-    translation_provider="llm",
-    translation_endpoint=os.getenv("TRANSLATION_ENDPOINT"),
-    translation_credential=os.getenv("TRANSLATION_API_KEY"),
-    tts_provider="web",
-    tts_endpoint=os.getenv("TTS_ENDPOINT"),
-    tts_credential=os.getenv("TTS_API_KEY"),
-)
-
-result = await skill.execute()
-```
-
-## Working with Subtitle Parsers
-
-Parse and manipulate subtitle files directly:
-
-```python
-from translation_dubbing_skill.subtitle import SubtitleParser, SubtitleSerializer
-from translation_dubbing_skill.models import SubtitleEntry
-
-# Parse existing subtitle file
-parser = SubtitleParser()
-entries = parser.parse("subtitles.srt")
-
-# Modify subtitle entries
-for entry in entries:
-    entry.text = f"[Modified] {entry.text}"
-
-# Serialize back to file
-serializer = SubtitleSerializer()
-serializer.serialize(entries, "output.srt", format="srt")
-```
-
-Create subtitle entries programmatically:
-
-```python
-from translation_dubbing_skill.models import SubtitleEntry
+from translation_dubbing_skill.subtitle import SubtitleParser, SubtitleEntry
 from datetime import timedelta
 
+# Parse existing subtitles
+parser = SubtitleParser()
+entries = parser.parse_file("subtitles.srt")
+
+# Create a new subtitle entry
 entry = SubtitleEntry(
     index=1,
-    start=timedelta(seconds=0),
-    end=timedelta(seconds=3.5),
-    text="Hello, world!"
+    start_time=timedelta(seconds=0),
+    end_time=timedelta(seconds=2.5),
+    text="Hello, world!",
+    speaker="Narrator"
 )
 
-# Access properties
-print(entry.duration)  # 3.5 seconds
-print(entry.start_ms)  # 0 milliseconds
-print(entry.end_ms)    # 3500 milliseconds
-```
-
-## Translation Provider Implementation
-
-### Using LLM Translation Provider
-
-```python
-from translation_dubbing_skill.providers.translation import LLMTranslationProvider
-
-provider = LLMTranslationProvider(
-    endpoint=os.getenv("TRANSLATION_ENDPOINT"),
-    credential=os.getenv("TRANSLATION_API_KEY"),
-    source_language="en",
-    target_language="zh-CN",
-    model_name="gpt-4",  # Optional
-)
-
-# Translate a batch of subtitle entries
-entries = [
-    SubtitleEntry(1, timedelta(0), timedelta(2), "Hello"),
-    SubtitleEntry(2, timedelta(2), timedelta(4), "How are you?"),
-]
-
-translated = await provider.translate_batch(entries)
-for entry in translated:
-    print(f"{entry.index}: {entry.text}")
+# Serialize back to SRT format
+from translation_dubbing_skill.subtitle import SRTSerializer
+serializer = SRTSerializer()
+srt_content = serializer.serialize([entry])
 ```
 
 ### Custom Translation Provider
 
-Implement the `TranslationProvider` protocol:
-
 ```python
 from translation_dubbing_skill.providers.translation import TranslationProvider
+from translation_dubbing_skill.models import SubtitleEntry
 from typing import List
 
 class CustomTranslationProvider(TranslationProvider):
     async def translate_batch(
         self,
-        entries: List[SubtitleEntry]
+        entries: List[SubtitleEntry],
+        source_lang: str,
+        target_lang: str
     ) -> List[SubtitleEntry]:
-        # Your custom translation logic
-        translated_entries = []
+        # Implement custom translation logic
+        translated = []
         for entry in entries:
-            translated_text = await self._custom_translate(entry.text)
-            translated_entries.append(
-                SubtitleEntry(
-                    index=entry.index,
-                    start=entry.start,
-                    end=entry.end,
-                    text=translated_text
-                )
-            )
-        return translated_entries
+            # Your translation API call here
+            translated_text = await your_api_call(entry.text)
+            entry.text = translated_text
+            translated.append(entry)
+        return translated
 ```
 
-## TTS Provider Implementation
-
-### Using LLM TTS Provider
+### Using the 3D Adaptive Scheduler
 
 ```python
-from translation_dubbing_skill.providers.tts import LLMTTSProvider
+from translation_dubbing_skill.scheduler import AdaptiveScheduler
+from translation_dubbing_skill.providers.translation import LLMTranslationProvider
 
-provider = LLMTTSProvider(
-    endpoint=os.getenv("TTS_ENDPOINT"),
-    credential=os.getenv("TTS_API_KEY"),
-    language="zh-CN",
-    voice="alloy",  # Voice ID
+scheduler = AdaptiveScheduler(
+    provider=LLMTranslationProvider(
+        endpoint="${TRANSLATION_ENDPOINT}",
+        api_key="${TRANSLATION_API_KEY}"
+    ),
+    initial_batch_size=10,
+    initial_concurrency=5,
+    max_tokens_per_batch=4000
 )
 
-# Generate audio for subtitle entry
-entry = SubtitleEntry(1, timedelta(0), timedelta(3), "你好，世界")
-audio_path = await provider.synthesize(entry)
-print(f"Audio saved to: {audio_path}")
+# Process subtitle entries with automatic rate limit handling
+translated_entries = await scheduler.process_all(
+    entries=subtitle_entries,
+    source_language="en",
+    target_language="zh-CN"
+)
 ```
 
-## Audio Duration Alignment
-
-The skill automatically aligns TTS audio duration with original subtitle timing:
+### Audio Duration Alignment
 
 ```python
 from translation_dubbing_skill.align import AudioAligner
+from pathlib import Path
 
 aligner = AudioAligner()
 
 # Stretch audio to fit target duration
-aligned_audio = await aligner.align(
-    audio_path="generated_audio.mp3",
-    target_duration=3.5,  # seconds
-    output_path="aligned_audio.mp3"
+aligned_audio = aligner.align_audio(
+    audio_path=Path("dubbed_audio.mp3"),
+    target_duration=2.5,  # seconds
+    output_path=Path("aligned_audio.mp3")
 )
 ```
 
-## 3D Adaptive Scheduler
-
-The scheduler prevents API rate limits by adaptively tuning:
-- **Batch size**: Number of subtitle entries per request
-- **Payload size**: Total tokens/characters per batch
-- **Concurrency**: Parallel request workers
+### Multi-Track Video Muxing
 
 ```python
-from translation_dubbing_skill.scheduler import AdaptiveScheduler
+from translation_dubbing_skill.mux import VideoMuxer
 
-scheduler = AdaptiveScheduler(
-    max_batch_size=20,
-    max_payload_tokens=4000,
-    max_concurrency=5,
-    initial_batch_size=10,
-    initial_concurrency=3,
-)
+muxer = VideoMuxer()
 
-# Process entries with adaptive rate limiting
-async def process_fn(batch):
-    return await translation_provider.translate_batch(batch)
-
-results = await scheduler.execute(
-    entries=all_subtitle_entries,
-    process_fn=process_fn,
+result = muxer.mux_tracks(
+    video_path="original.mp4",
+    audio_tracks=[
+        {"path": "original_audio.aac", "language": "eng", "title": "Original"},
+        {"path": "dubbed_audio.mp3", "language": "zho", "title": "Chinese", "default": True}
+    ],
+    subtitle_tracks=[
+        {"path": "original.srt", "language": "eng", "title": "English"},
+        {"path": "translated.srt", "language": "zho", "title": "Chinese", "default": True}
+    ],
+    output_path="output.mkv"
 )
 ```
 
-The scheduler automatically:
-- Reduces batch size on token overflow
-- Backs off concurrency on HTTP 429
-- Retries with exponential backoff + jitter
-- Reports progress events
-
-## Progress Tracking
-
-Listen to progress events:
+## Progress Monitoring
 
 ```python
 from translation_dubbing_skill.progress import ProgressListener, ProgressEvent
 
-class MyProgressListener(ProgressListener):
+class CustomProgressListener(ProgressListener):
+    def on_stage_start(self, stage: str):
+        print(f"Starting stage: {stage}")
+    
     def on_progress(self, event: ProgressEvent):
-        print(f"{event.stage}: {event.current}/{event.total} - {event.message}")
+        print(f"Progress: {event.current}/{event.total} - {event.message}")
+    
+    def on_stage_complete(self, stage: str):
+        print(f"Completed stage: {stage}")
 
-skill = TranslationDubbingSkill(
-    video_path="input.mp4",
-    # ... other params
-    progress_listener=MyProgressListener(),
-)
-
-await skill.execute()
-```
-
-## Multi-Track Video Output
-
-The skill produces lossless multi-track videos:
-
-**Subtitle-only mode:**
-- Original audio track (default)
-- Original subtitle track
-- Translated subtitle track (default)
-
-**Dubbing mode:**
-- Original audio track
-- Dubbed audio track (default)
-- Original subtitle track
-- Translated subtitle track (default)
-
-Output format: MKV container with lossless video re-muxing.
-
-## Error Handling
-
-```python
-from translation_dubbing_skill.errors import (
-    TranslationError,
-    TTSError,
-    RateLimitError,
-    ContextWindowError,
-)
-
-try:
-    result = await skill.execute()
-except RateLimitError as e:
-    print(f"Rate limit hit: {e.message}")
-    # Scheduler handles this automatically with backoff
-except ContextWindowError as e:
-    print(f"Payload too large: {e.message}")
-    # Scheduler reduces batch size automatically
-except TranslationError as e:
-    print(f"Translation failed: {e.message}")
-except TTSError as e:
-    print(f"TTS synthesis failed: {e.message}")
+# Attach listener to skill execution
+listener = CustomProgressListener()
+result = run_skill(config, progress_listener=listener)
 ```
 
 ## Testing
@@ -429,77 +301,97 @@ except TTSError as e:
 # Run all tests
 pytest
 
-# Run unit tests only (skip integration)
+# Run only unit tests (skip integration tests)
 pytest -m "not integration"
 
-# Run with coverage
-pytest --cov=translation_dubbing_skill --cov-report=html
+# Run specific test file
+pytest tests/test_subtitle_parser.py
 
-# Run specific test module
-pytest tests/test_subtitle.py
+# Run with coverage
+pytest --cov=src/translation_dubbing_skill
+```
+
+## Common Error Handling
+
+```python
+from translation_dubbing_skill.errors import (
+    RateLimitError,
+    ContextWindowExceededError,
+    SubtitleParseError,
+    TTSError
+)
+
+try:
+    result = run_skill(config)
+except RateLimitError as e:
+    # The scheduler will automatically retry with backoff
+    print(f"Rate limit hit, will retry: {e}")
+except ContextWindowExceededError as e:
+    # Payload too large, will be split automatically
+    print(f"Context window exceeded: {e}")
+except SubtitleParseError as e:
+    print(f"Failed to parse subtitles: {e}")
+except TTSError as e:
+    print(f"TTS generation failed: {e}")
+```
+
+## Advanced Scheduling Configuration
+
+Tune the 3D scheduler for your API limits:
+
+```python
+from translation_dubbing_skill.scheduler import SchedulerConfig
+
+scheduler_config = SchedulerConfig(
+    initial_batch_size=15,
+    min_batch_size=1,
+    max_batch_size=50,
+    initial_concurrency=10,
+    min_concurrency=1,
+    max_concurrency=20,
+    max_tokens_per_batch=8000,
+    rate_limit_backoff_base=2.0,
+    rate_limit_backoff_max=60.0,
+    context_window_split_ratio=0.7
+)
+
+scheduler = AdaptiveScheduler(provider, config=scheduler_config)
 ```
 
 ## Troubleshooting
 
-### FFmpeg Not Found
-
+**FFmpeg not found:**
 ```bash
-# macOS
-brew install ffmpeg
-
-# Ubuntu/Debian
-sudo apt update && sudo apt install ffmpeg
-
-# Verify installation
+# Verify FFmpeg installation
 ffmpeg -version
+
+# Add to PATH if needed (macOS/Linux)
+export PATH="/usr/local/bin:$PATH"
 ```
 
-### API Rate Limits
+**Rate limit errors persist:**
+- Reduce `initial_concurrency` in scheduler config
+- Decrease `max_tokens_per_batch` to send smaller payloads
+- Check your API provider's rate limit documentation
 
-The 3D adaptive scheduler handles rate limits automatically. If you still encounter issues:
-
-1. Reduce `initial_concurrency` in scheduler config
-2. Lower `max_batch_size` to decrease payload size
-3. Check API provider rate limit documentation
-
-### Subtitle Extraction Fails
-
-If embedded subtitle extraction fails:
-
+**Subtitle parsing fails:**
 ```python
-# Provide external subtitle file
-skill = TranslationDubbingSkill(
-    video_path="input.mp4",
-    subtitle_path="external_subtitles.srt",  # Use external file
-    # ...
-)
+# Validate subtitle format
+from translation_dubbing_skill.subtitle import SubtitleParser
+
+parser = SubtitleParser()
+try:
+    entries = parser.parse_file("subtitles.srt")
+except SubtitleParseError as e:
+    print(f"Invalid subtitle format: {e}")
+    # Try re-encoding the file as UTF-8
 ```
 
-### Audio Alignment Quality
+**Audio sync issues:**
+- Ensure original video has consistent frame rate
+- Check that TTS audio files are generated correctly
+- Verify duration alignment thresholds in `AudioAligner`
 
-If stretched audio sounds distorted:
-
-1. Use higher quality TTS voices
-2. Adjust stretch ratio by modifying subtitle timing
-3. Consider breaking long segments into smaller chunks
-
-### Memory Issues with Large Videos
-
-For large videos:
-
-1. Process in chunks using external subtitle files
-2. Increase system swap space
-3. Use `subtitle_only` mode first, then dub separately
-
-## Common Language Codes
-
-- English: `en`
-- Simplified Chinese: `zh-CN`
-- Traditional Chinese: `zh-TW`
-- Japanese: `ja`
-- Korean: `ko`
-- Spanish: `es`
-- French: `fr`
-- German: `de`
-- Portuguese: `pt`
-- Russian: `ru`
+**Multi-track video won't play:**
+- Ensure output format is MKV (containers like MP4 may not support multiple audio tracks)
+- Verify player supports multi-track playback (VLC, mpv recommended)
