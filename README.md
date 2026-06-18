@@ -99,6 +99,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-dingtalk-channel](skills/openclaw-dingtalk-channel/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-dingtalk-channel) | [soimy/openclaw-channel-dingtalk](https://github.com/soimy/openclaw-channel-dingtalk) | 2026-06-10 |
 | [hermes-studio-dashboard](skills/hermes-studio-dashboard/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-studio-dashboard) | [EKKOLearnAI/hermes-studio](https://github.com/EKKOLearnAI/hermes-studio) | 2026-06-14 |
 | [openclaw-videotranslate-skill](skills/openclaw-videotranslate-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-videotranslate-skill) | [zbjincheng/openclaw-skill-videotranslate](https://github.com/zbjincheng/openclaw-skill-videotranslate) | 2026-06-18 |
+| [hermes-agentmesh-async-bus](skills/hermes-agentmesh-async-bus/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agentmesh-async-bus) | [seleman66eeddwegger3-art/hermes-agentmesh](https://github.com/seleman66eeddwegger3-art/hermes-agentmesh) | 2026-06-18 |
 <!-- SKILL_INDEX -->
 
 ---
