@@ -101,6 +101,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-videotranslate-skill](skills/openclaw-videotranslate-skill/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-videotranslate-skill) | [zbjincheng/openclaw-skill-videotranslate](https://github.com/zbjincheng/openclaw-skill-videotranslate) | 2026-06-18 |
 | [hermes-agentmesh-async-bus](skills/hermes-agentmesh-async-bus/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agentmesh-async-bus) | [seleman66eeddwegger3-art/hermes-agentmesh](https://github.com/seleman66eeddwegger3-art/hermes-agentmesh) | 2026-06-18 |
 | [openclaw-polymarket-trading-bot](skills/openclaw-polymarket-trading-bot/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-polymarket-trading-bot) | [Golrypavium/openclaw-polymarket-trading-bot](https://github.com/Golrypavium/openclaw-polymarket-trading-bot) | 2026-06-18 |
+| [openclawn-agent-framework](skills/openclawn-agent-framework/) | [install](https://skills.sh/aradotso/hermes-skills/openclawn-agent-framework) | [MuhammadHasbiAshshiddieqy/OpenClawn](https://github.com/MuhammadHasbiAshshiddieqy/OpenClawn) | 2026-06-20 |
 <!-- SKILL_INDEX -->
 
 ---
