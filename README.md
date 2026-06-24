@@ -102,6 +102,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [hermes-agentmesh-async-bus](skills/hermes-agentmesh-async-bus/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-agentmesh-async-bus) | [seleman66eeddwegger3-art/hermes-agentmesh](https://github.com/seleman66eeddwegger3-art/hermes-agentmesh) | 2026-06-18 |
 | [openclaw-polymarket-trading-bot](skills/openclaw-polymarket-trading-bot/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-polymarket-trading-bot) | [Golrypavium/openclaw-polymarket-trading-bot](https://github.com/Golrypavium/openclaw-polymarket-trading-bot) | 2026-06-18 |
 | [openclawn-agent-framework](skills/openclawn-agent-framework/) | [install](https://skills.sh/aradotso/hermes-skills/openclawn-agent-framework) | [MuhammadHasbiAshshiddieqy/OpenClawn](https://github.com/MuhammadHasbiAshshiddieqy/OpenClawn) | 2026-06-20 |
+| [hermes-feishu-streaming-card](skills/hermes-feishu-streaming-card/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-feishu-streaming-card) | [baileyh8/hermes-feishu-streaming-card](https://github.com/baileyh8/hermes-feishu-streaming-card) | 2026-06-24 |
 <!-- SKILL_INDEX -->
 
 ---
