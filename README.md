@@ -104,6 +104,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclawn-agent-framework](skills/openclawn-agent-framework/) | [install](https://skills.sh/aradotso/hermes-skills/openclawn-agent-framework) | [MuhammadHasbiAshshiddieqy/OpenClawn](https://github.com/MuhammadHasbiAshshiddieqy/OpenClawn) | 2026-06-20 |
 | [hermes-feishu-streaming-card](skills/hermes-feishu-streaming-card/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-feishu-streaming-card) | [baileyh8/hermes-feishu-streaming-card](https://github.com/baileyh8/hermes-feishu-streaming-card) | 2026-06-24 |
 | [hermes-browser-extension](skills/hermes-browser-extension/) | [install](https://skills.sh/aradotso/hermes-skills/hermes-browser-extension) | [abundantbeing/hermes-browser-extension](https://github.com/abundantbeing/hermes-browser-extension) | 2026-07-01 |
+| [openclaw-android-setup](skills/openclaw-android-setup/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-android-setup) | [AidanPark/openclaw-android](https://github.com/AidanPark/openclaw-android) | 2026-07-02 |
 <!-- SKILL_INDEX -->
 
 ---
