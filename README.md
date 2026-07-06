@@ -107,6 +107,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-android-setup](skills/openclaw-android-setup/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-android-setup) | [AidanPark/openclaw-android](https://github.com/AidanPark/openclaw-android) | 2026-07-02 |
 | [openclaw-ai-metamask-wallet-automation](skills/openclaw-ai-metamask-wallet-automation/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-ai-metamask-wallet-automation) | [olot-1477/Openclaw-AI-Metamask-26](https://github.com/olot-1477/Openclaw-AI-Metamask-26) | 2026-07-03 |
 | [openclaw-termux-android](skills/openclaw-termux-android/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-termux-android) | [mithun50/openclaw-termux](https://github.com/mithun50/openclaw-termux) | 2026-07-06 |
+| [openclaw-marketing-skills](skills/openclaw-marketing-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-marketing-skills) | [davidpc007/openclaw-marketing-skills](https://github.com/davidpc007/openclaw-marketing-skills) | 2026-07-06 |
 <!-- SKILL_INDEX -->
 
 ---
