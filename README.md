@@ -109,6 +109,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-termux-android](skills/openclaw-termux-android/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-termux-android) | [mithun50/openclaw-termux](https://github.com/mithun50/openclaw-termux) | 2026-07-06 |
 | [openclaw-marketing-skills](skills/openclaw-marketing-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-marketing-skills) | [davidpc007/openclaw-marketing-skills](https://github.com/davidpc007/openclaw-marketing-skills) | 2026-07-06 |
 | [assistant-x-openclaw-jarvis-voice-assistant](skills/assistant-x-openclaw-jarvis-voice-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/assistant-x-openclaw-jarvis-voice-assistant) | [RubinTry/assistant-x-openclaw](https://github.com/RubinTry/assistant-x-openclaw) | 2026-07-08 |
+| [hermesfusion-multi-model-panel](skills/hermesfusion-multi-model-panel/) | [install](https://skills.sh/aradotso/hermes-skills/hermesfusion-multi-model-panel) | [GiannoKlein9/HermesFusion](https://github.com/GiannoKlein9/HermesFusion) | 2026-07-08 |
 <!-- SKILL_INDEX -->
 
 ---
