@@ -111,6 +111,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [assistant-x-openclaw-jarvis-voice-assistant](skills/assistant-x-openclaw-jarvis-voice-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/assistant-x-openclaw-jarvis-voice-assistant) | [RubinTry/assistant-x-openclaw](https://github.com/RubinTry/assistant-x-openclaw) | 2026-07-08 |
 | [hermesfusion-multi-model-panel](skills/hermesfusion-multi-model-panel/) | [install](https://skills.sh/aradotso/hermes-skills/hermesfusion-multi-model-panel) | [GiannoKlein9/HermesFusion](https://github.com/GiannoKlein9/HermesFusion) | 2026-07-08 |
 | [openclaw-voice-call-realtime](skills/openclaw-voice-call-realtime/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-voice-call-realtime) | [TristanBrotherton/openclaw-voice-call-realtime](https://github.com/TristanBrotherton/openclaw-voice-call-realtime) | 2026-07-08 |
+| [openfinclaw-quant-research](skills/openfinclaw-quant-research/) | [install](https://skills.sh/aradotso/hermes-skills/openfinclaw-quant-research) | [wikidjon/ai-openclaw-cli](https://github.com/wikidjon/ai-openclaw-cli) | 2026-07-10 |
 <!-- SKILL_INDEX -->
 
 ---
