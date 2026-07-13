@@ -113,6 +113,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-voice-call-realtime](skills/openclaw-voice-call-realtime/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-voice-call-realtime) | [TristanBrotherton/openclaw-voice-call-realtime](https://github.com/TristanBrotherton/openclaw-voice-call-realtime) | 2026-07-08 |
 | [openfinclaw-quant-research](skills/openfinclaw-quant-research/) | [install](https://skills.sh/aradotso/hermes-skills/openfinclaw-quant-research) | [wikidjon/ai-openclaw-cli](https://github.com/wikidjon/ai-openclaw-cli) | 2026-07-10 |
 | [openclaw-tool-call-viewer-2026](skills/openclaw-tool-call-viewer-2026/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-tool-call-viewer-2026) | [reedchris43/openclaw-tool-call-viewer-2026](https://github.com/reedchris43/openclaw-tool-call-viewer-2026) | 2026-07-11 |
+| [openclaw-cliq-integration](skills/openclaw-cliq-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-cliq-integration) | [sprintberlin/openclaw-cliq](https://github.com/sprintberlin/openclaw-cliq) | 2026-07-13 |
 <!-- SKILL_INDEX -->
 
 ---
