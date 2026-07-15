@@ -114,6 +114,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openfinclaw-quant-research](skills/openfinclaw-quant-research/) | [install](https://skills.sh/aradotso/hermes-skills/openfinclaw-quant-research) | [wikidjon/ai-openclaw-cli](https://github.com/wikidjon/ai-openclaw-cli) | 2026-07-10 |
 | [openclaw-tool-call-viewer-2026](skills/openclaw-tool-call-viewer-2026/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-tool-call-viewer-2026) | [reedchris43/openclaw-tool-call-viewer-2026](https://github.com/reedchris43/openclaw-tool-call-viewer-2026) | 2026-07-11 |
 | [openclaw-cliq-integration](skills/openclaw-cliq-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-cliq-integration) | [sprintberlin/openclaw-cliq](https://github.com/sprintberlin/openclaw-cliq) | 2026-07-13 |
+| [fn2-openclaw-market-research](skills/fn2-openclaw-market-research/) | [install](https://skills.sh/aradotso/hermes-skills/fn2-openclaw-market-research) | [fn2ai/fn2-openclaw-skill](https://github.com/fn2ai/fn2-openclaw-skill) | 2026-07-15 |
 <!-- SKILL_INDEX -->
 
 ---
