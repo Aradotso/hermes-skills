@@ -116,6 +116,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-cliq-integration](skills/openclaw-cliq-integration/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-cliq-integration) | [sprintberlin/openclaw-cliq](https://github.com/sprintberlin/openclaw-cliq) | 2026-07-13 |
 | [fn2-openclaw-market-research](skills/fn2-openclaw-market-research/) | [install](https://skills.sh/aradotso/hermes-skills/fn2-openclaw-market-research) | [fn2ai/fn2-openclaw-skill](https://github.com/fn2ai/fn2-openclaw-skill) | 2026-07-15 |
 | [openclaw-desk-pet-macos](skills/openclaw-desk-pet-macos/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-desk-pet-macos) | [LeoZhaorx/openclaw-desk-pet](https://github.com/LeoZhaorx/openclaw-desk-pet) | 2026-07-16 |
+| [clawteam-openclaw-swarm](skills/clawteam-openclaw-swarm/) | [install](https://skills.sh/aradotso/hermes-skills/clawteam-openclaw-swarm) | [win4r/ClawTeam-OpenClaw](https://github.com/win4r/ClawTeam-OpenClaw) | 2026-07-30 |
 <!-- SKILL_INDEX -->
 
 ---
