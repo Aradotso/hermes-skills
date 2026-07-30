@@ -118,6 +118,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-desk-pet-macos](skills/openclaw-desk-pet-macos/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-desk-pet-macos) | [LeoZhaorx/openclaw-desk-pet](https://github.com/LeoZhaorx/openclaw-desk-pet) | 2026-07-16 |
 | [clawteam-openclaw-swarm](skills/clawteam-openclaw-swarm/) | [install](https://skills.sh/aradotso/hermes-skills/clawteam-openclaw-swarm) | [win4r/ClawTeam-OpenClaw](https://github.com/win4r/ClawTeam-OpenClaw) | 2026-07-30 |
 | [secure-openclaw-ai-assistant](skills/secure-openclaw-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/secure-openclaw-ai-assistant) | [composio-community/secure-openclaw](https://github.com/composio-community/secure-openclaw) | 2026-07-30 |
+| [openclaw-runbook-security](skills/openclaw-runbook-security/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-runbook-security) | [digitalknk/openclaw-runbook](https://github.com/digitalknk/openclaw-runbook) | 2026-07-30 |
 <!-- SKILL_INDEX -->
 
 ---
