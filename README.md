@@ -119,6 +119,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [clawteam-openclaw-swarm](skills/clawteam-openclaw-swarm/) | [install](https://skills.sh/aradotso/hermes-skills/clawteam-openclaw-swarm) | [win4r/ClawTeam-OpenClaw](https://github.com/win4r/ClawTeam-OpenClaw) | 2026-07-30 |
 | [secure-openclaw-ai-assistant](skills/secure-openclaw-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/secure-openclaw-ai-assistant) | [composio-community/secure-openclaw](https://github.com/composio-community/secure-openclaw) | 2026-07-30 |
 | [openclaw-runbook-security](skills/openclaw-runbook-security/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-runbook-security) | [digitalknk/openclaw-runbook](https://github.com/digitalknk/openclaw-runbook) | 2026-07-30 |
+| [openclaw-nerve-cockpit](skills/openclaw-nerve-cockpit/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-nerve-cockpit) | [daggerhashimoto/openclaw-nerve](https://github.com/daggerhashimoto/openclaw-nerve) | 2026-07-30 |
 <!-- SKILL_INDEX -->
 
 ---
