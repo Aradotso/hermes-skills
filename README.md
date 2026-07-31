@@ -123,6 +123,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclawby-skills](skills/openclawby-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclawby-skills) | [openclawby/openclawby-skills](https://github.com/openclawby/openclawby-skills) | 2026-07-30 |
 | [openclaw-pr-assets](skills/openclaw-pr-assets/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-pr-assets) | [steipete/openclaw-pr-assets](https://github.com/steipete/openclaw-pr-assets) | 2026-07-30 |
 | [openclaw-multi-channel-ai-assistant](skills/openclaw-multi-channel-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-multi-channel-ai-assistant) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
+| [openclaw-chinese-documentation](skills/openclaw-chinese-documentation/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-documentation) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
 <!-- SKILL_INDEX -->
 
 ---
