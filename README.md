@@ -122,6 +122,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-nerve-cockpit](skills/openclaw-nerve-cockpit/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-nerve-cockpit) | [daggerhashimoto/openclaw-nerve](https://github.com/daggerhashimoto/openclaw-nerve) | 2026-07-30 |
 | [openclawby-skills](skills/openclawby-skills/) | [install](https://skills.sh/aradotso/hermes-skills/openclawby-skills) | [openclawby/openclawby-skills](https://github.com/openclawby/openclawby-skills) | 2026-07-30 |
 | [openclaw-pr-assets](skills/openclaw-pr-assets/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-pr-assets) | [steipete/openclaw-pr-assets](https://github.com/steipete/openclaw-pr-assets) | 2026-07-30 |
+| [openclaw-multi-channel-ai-assistant](skills/openclaw-multi-channel-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-multi-channel-ai-assistant) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
 <!-- SKILL_INDEX -->
 
 ---
