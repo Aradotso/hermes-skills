@@ -124,6 +124,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-pr-assets](skills/openclaw-pr-assets/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-pr-assets) | [steipete/openclaw-pr-assets](https://github.com/steipete/openclaw-pr-assets) | 2026-07-30 |
 | [openclaw-multi-channel-ai-assistant](skills/openclaw-multi-channel-ai-assistant/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-multi-channel-ai-assistant) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
 | [openclaw-chinese-documentation](skills/openclaw-chinese-documentation/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-documentation) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
+| [opik-openclaw-observability](skills/opik-openclaw-observability/) | [install](https://skills.sh/aradotso/hermes-skills/opik-openclaw-observability) | [comet-ml/opik-openclaw](https://github.com/comet-ml/opik-openclaw) | 2026-08-04 |
 <!-- SKILL_INDEX -->
 
 ---
