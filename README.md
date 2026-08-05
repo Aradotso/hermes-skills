@@ -126,6 +126,7 @@ npx skills add Aradotso/hermes-skills --skill <skill-name>
 | [openclaw-chinese-documentation](skills/openclaw-chinese-documentation/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-chinese-documentation) | [yeuxuan/openclaw-docs](https://github.com/yeuxuan/openclaw-docs) | 2026-07-31 |
 | [opik-openclaw-observability](skills/opik-openclaw-observability/) | [install](https://skills.sh/aradotso/hermes-skills/opik-openclaw-observability) | [comet-ml/opik-openclaw](https://github.com/comet-ml/opik-openclaw) | 2026-08-04 |
 | [openclaw-saas-platform](skills/openclaw-saas-platform/) | [install](https://skills.sh/aradotso/hermes-skills/openclaw-saas-platform) | [xingzhicn/openclaw-saas](https://github.com/xingzhicn/openclaw-saas) | 2026-08-04 |
+| [zhigui-second-brain-mcp-skill](skills/zhigui-second-brain-mcp-skill/) | [install](https://skills.sh/aradotso/hermes-skills/zhigui-second-brain-mcp-skill) | [CarlWangChina/zhigui-openclaw-ui-second-brain-skill](https://github.com/CarlWangChina/zhigui-openclaw-ui-second-brain-skill) | 2026-08-05 |
 <!-- SKILL_INDEX -->
 
 ---
